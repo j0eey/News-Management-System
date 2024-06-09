@@ -15,14 +15,14 @@ class AdminMemberController extends Controller
     // Index method to display all members
     public function index()
     {
-        $members = User::paginate(10); // Paginate to show 10 members per page
+        $members = User::paginate(10);
         return view('modules.admin.members.index', compact('members'));
     }
 
     // Show the form to create a new member
     public function create()
     {
-        $roles = Role::all(); // Fetch all roles
+        $roles = Role::all(); 
         return view('modules.admin.members.create', compact('roles'));
     }
 
@@ -34,7 +34,7 @@ class AdminMemberController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users|max:255',
             'password' => 'required|string|min:8',
-            'role' => 'required|exists:roles,name', // Ensure the role exists in roles table
+            'role' => 'required|exists:roles,name', 
         ]);
 
         try {
@@ -87,7 +87,7 @@ class AdminMemberController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,'.$id.'|max:255',
             'password' => 'nullable|string|min:8',
-            'role' => 'required|exists:roles,name', // Ensure the role exists in roles table
+            'role' => 'required|exists:roles,name',
         ]);
 
         try {
@@ -191,8 +191,8 @@ class AdminMemberController extends Controller
     public function getPermissions($memberId)
     {
         $user = User::findOrFail($memberId);
-        $allPermissions = Permission::all(); // Fetch all permissions
-        $memberPermissions = $user->permissions; // Fetch current permissions of the user
+        $allPermissions = Permission::all();
+        $memberPermissions = $user->permissions;
 
         Log::info('Permissions for user with ID ' . $memberId . ': ' . json_encode($allPermissions));
 
