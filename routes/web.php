@@ -36,9 +36,7 @@ Route::middleware([EnsureUserIsSuperAdmin::class])->prefix('admin')->group(funct
     Route::post('/members', [AdminMemberController::class, 'store'])->name('admin.members.store');
     Route::get('/members/{member}/edit', [AdminMemberController::class, 'edit'])->name('admin.members.edit');
     Route::put('/members/{member}', [AdminMemberController::class, 'update'])->name('admin.members.update');
-    Route::delete('admin/members/{member}', [AdminMemberController::class, 'destroy'])->name('admin.members.destroy');
+    Route::delete('/members/{member}', [AdminMemberController::class, 'destroy'])->name('admin.members.destroy');
+    Route::get('/members/{member}/permissions', [AdminMemberController::class, 'getPermissions'])->name('admin.members.permissions');
+    Route::post('/save-permissions', [AdminMemberController::class, 'savePermissions'])->name('admin.members.savePermissions');
 });
-
-Route::get('/admin/members/{member}/permissions', [AdminMemberController::class, 'getPermissions'])->name('admin.members.permissions');
-
-Route::post('/save-permissions', [AdminMemberController::class, 'savePermissions'])->name('admin.members.savePermissions');

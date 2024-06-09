@@ -167,34 +167,41 @@ class AdminMemberController extends Controller
         try {
             $user = User::findOrFail($memberId);
 
+            // Detach all existing permissions
+            $user->permissions()->detach();
+
             // Get the permission IDs to sync
-            $permissionIds = [];
             foreach ($permissions as $permissionName) {
                 $permission = Permission::where('name', $permissionName)->firstOrFail();
-                $permissionIds[] = $permission->id;
+                DB::table('model_has_permissions')->insert([
+                    'permission_id' => $permission->id,
+                    'model_type' => User::class,
+                    'model_id' => $user->id,
+                ]);
             }
-
-            // Sync the permissions
-            $user->permissions()->sync($permissionIds); // Assuming permissions() is the relationship method
 
             return response()->json(['message' => 'Permissions saved successfully']);
         } catch (\Exception $e) {
             Log::error('Error saving permissions: ' . $e->getMessage());
-            return response()->json(['error' => 'Error saving permissions'], 500);
+            return response()->json(['error' => 'Error saving permissions: ' . $e->getMessage()], 500);
         }
     }
-
 
     // Inside the getPermissions method
     public function getPermissions($memberId)
     {
         $user = User::findOrFail($memberId);
-        $permissions = Permission::all(); // Fetch all permissions
+        $allPermissions = Permission::all(); // Fetch all permissions
+        $memberPermissions = $user->permissions; // Fetch current permissions of the user
 
-        Log::info('Permissions for user with ID ' . $memberId . ': ' . json_encode($permissions));
+        Log::info('Permissions for user with ID ' . $memberId . ': ' . json_encode($allPermissions));
 
-        return response()->json(['permissions' => $permissions]);
+        return response()->json([
+            'allPermissions' => $allPermissions,
+            'memberPermissions' => $memberPermissions
+        ]);
     }
+
 
 
 

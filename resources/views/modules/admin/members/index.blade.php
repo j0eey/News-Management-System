@@ -97,8 +97,9 @@
                 url: '{{ route('admin.members.permissions', ['member' => ':memberId']) }}'.replace(':memberId', memberId),
                 method: 'GET',
                 success: function(response) {
-                    var permissions = response.permissions;
-                    displayPermissions(permissions);
+                    var allPermissions = response.allPermissions;
+                    var memberPermissions = response.memberPermissions;
+                    displayPermissions(allPermissions, memberPermissions);
                 },
                 error: function(xhr, status, error) {
                     console.error('An error occurred while fetching permissions:', error);
@@ -132,22 +133,27 @@
         });
     });
 
-    // Inside the displayPermissions function in your blade file
-    function displayPermissions(permissions) {
+    function displayPermissions(allPermissions, memberPermissions) {
         var permissionsList = $('#permissionsList');
         permissionsList.empty(); // Clear existing permissions
 
+        // Create a set of member permissions for quick lookup
+        var memberPermissionsSet = new Set(memberPermissions.map(p => p.name));
+
         // Add permissions checkboxes dynamically
-        permissions.forEach(function(permission) {
+        allPermissions.forEach(function(permission) {
+            var isChecked = memberPermissionsSet.has(permission.name);
             var checkbox = $('<div class="form-check">' +
-                '<input class="form-check-input" type="checkbox" name="permissions[]" value="' + permission.name + '">' +
+                '<input class="form-check-input" type="checkbox" name="permissions[]" value="' + permission.name + '"' + (isChecked ? ' checked' : '') + '>' +
                 '<label class="form-check-label">' + permission.name + '</label>' +
                 '</div>');
             permissionsList.append(checkbox);
         });
 
-        console.log('Permissions displayed:', permissions);
+        console.log('Permissions displayed:', allPermissions);
     }
 </script>
+
+
 
 @endpush
