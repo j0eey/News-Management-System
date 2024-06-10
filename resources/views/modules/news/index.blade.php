@@ -9,9 +9,8 @@
 @include("layouts.header")
 @include("layouts.sidebar")
 
-
 <div class="container">
-    <a href="{{ route('news.create') }}" class="btn btn-primary">Add News</a>
+    <a href="{{ route('news.create') }}" class="btn btn-primary" data-permission="create_news">Add News</a>
     <table class="table mt-3">
         <thead>
             <tr>
@@ -52,11 +51,11 @@
                 <td>{{ $item->category->title }}</td>
                 <td>{{ implode(', ', $item->tags->pluck('title')->toArray() ?? []) }}</td>
                 <td>
-                    <a href="{{ route('news.edit', $item->id) }}" class="btn btn-warning">Edit</a>
+                    <a href="{{ route('news.edit', $item->id) }}" class="btn btn-warning" data-permission="edit_news">Edit</a>
                     <form action="{{ route('news.destroy', $item->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger" data-permission="delete_news">Delete</button>
                     </form>
                 </td>
             </tr>
@@ -65,3 +64,6 @@
     </table>
     {{ $news->links('pagination::bootstrap-4') }}
 </div>
+@push('scripts')
+<script src="{{ url('js/permissions.js') }}"></script>
+@endpush

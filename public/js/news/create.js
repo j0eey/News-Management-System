@@ -31,9 +31,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         method: 'DELETE',
                         headers: {
                             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                            'Content-Type': 'application/json' // Ensure the content type is JSON
+                            'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify({ media_id: mediaId }) // Send media ID in the request body
+                        body: JSON.stringify({ media_id: mediaId }) 
                     }).then(function (response) {
                         if (response.ok) {
                             return response.json();

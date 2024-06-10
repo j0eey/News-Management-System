@@ -14,16 +14,16 @@ class User extends Authenticatable
     use HasRoles;
 
     protected $fillable = [
-        'name', // Ensure 'name' is fillable
+        'name', 
         'email',
         'password',
-        'role_id', // Add role_id field to fillable
-        'is_super_admin', // Add is_super_admin field to fillable
-        'last_login_date', // Add last_login_date field to fillable
+        'role_id', 
+        'is_super_admin', 
+        'last_login_date', 
     ];
 
     protected $casts = [
-        'last_login_date' => 'datetime', // Cast last_login_date to a DateTime object
+        'last_login_date' => 'datetime',
     ];
 
     // Define the permissions relationship

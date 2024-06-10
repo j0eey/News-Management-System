@@ -40,3 +40,5 @@ Route::middleware([EnsureUserIsSuperAdmin::class])->prefix('admin')->group(funct
     Route::get('/members/{member}/permissions', [AdminMemberController::class, 'getPermissions'])->name('admin.members.permissions');
     Route::post('/save-permissions', [AdminMemberController::class, 'savePermissions'])->name('admin.members.savePermissions');
 });
+
+Route::get('/user-permissions', [AdminMemberController::class, 'getUserPermissions'])->name('user.permissions');

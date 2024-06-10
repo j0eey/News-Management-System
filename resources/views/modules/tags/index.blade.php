@@ -1,13 +1,13 @@
 @extends("layouts.layout")
-@section("title", "Tags")
-@extends("layouts.header")
-@extends("layouts.sidebar")
 @push('styles')
 <link href="{{ url('css/tag/index.css') }}" rel="stylesheet">
 @endpush
+@section("title", "Tags")
+@extends("layouts.header")
+@extends("layouts.sidebar")
 
 <div class="container">
-    <button class="btn btn-primary" data-toggle="modal" data-target="#tagModal" id="addTagButton">Add New Tag</button>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#tagModal" id="addTagButton" data-permission="create_tags">Add New Tag</button>
     <table class="table mt-3">
         <thead>
             <tr>
@@ -20,11 +20,11 @@
             <tr>
                 <td>{{ $tag->title }}</td>
                 <td>
-                    <button class="btn btn-warning editTagButton" data-id="{{ $tag->id }}" data-title="{{ $tag->title }}" data-toggle="modal" data-target="#tagModal">Edit</button>
+                    <button class="btn btn-warning editTagButton" data-id="{{ $tag->id }}" data-title="{{ $tag->title }}" data-toggle="modal" data-target="#tagModal" data-permission="edit_tags">Edit</button>
                     <form action="{{ route('tags.destroy', $tag->id) }}" method="POST" style="display:inline;" class="deleteTagForm">
                         @csrf
                         @method('DELETE')
-                        <button type="button" class="btn btn-danger deleteTagButton">Delete</button>
+                        <button type="button" class="btn btn-danger deleteTagButton" data-permission="delete_tags">Delete</button>
                     </form>
                 </td>
             </tr>
@@ -63,4 +63,5 @@
 <script src="{{ url('js/jquery-3.5.1.min.js') }}"></script>
 <script src="{{ url('js/bootstrap.min.js') }}"></script>
 <script src="{{ url('js/index-tags.js') }}"></script>
+<script src="{{ url('js/permissions.js') }}"></script>
 @endpush

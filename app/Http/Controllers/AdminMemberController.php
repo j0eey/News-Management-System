@@ -157,7 +157,6 @@ class AdminMemberController extends Controller
         }
     }
 
-    
 
     public function savePermissions(Request $request)
     {
@@ -171,8 +170,8 @@ class AdminMemberController extends Controller
             $user->permissions()->detach();
 
             // Get the permission IDs to sync
-            foreach ($permissions as $permissionName) {
-                $permission = Permission::where('name', $permissionName)->firstOrFail();
+            foreach ($permissions as $permissionTitle) {
+                $permission = Permission::where('title', $permissionTitle)->firstOrFail();
                 DB::table('model_has_permissions')->insert([
                     'permission_id' => $permission->id,
                     'model_type' => User::class,
@@ -186,13 +185,12 @@ class AdminMemberController extends Controller
             return response()->json(['error' => 'Error saving permissions: ' . $e->getMessage()], 500);
         }
     }
-
     // Inside the getPermissions method
     public function getPermissions($memberId)
     {
         $user = User::findOrFail($memberId);
-        $allPermissions = Permission::all();
-        $memberPermissions = $user->permissions;
+        $allPermissions = Permission::get(['title', 'id']); // Fetch only the 'title' and 'id' columns
+        $memberPermissions = $user->permissions()->get(['title', 'id']); // Fetch only the 'title' and 'id' columns
 
         Log::info('Permissions for user with ID ' . $memberId . ': ' . json_encode($allPermissions));
 
@@ -202,7 +200,14 @@ class AdminMemberController extends Controller
         ]);
     }
 
+    public function getUserPermissions()
+    {
+        $user = auth()->user();
+        $permissions = $user->permissions->pluck('name')->toArray();
 
+        return response()->json(['permissions' => $permissions]);
+    }
 
+    
 
 }
