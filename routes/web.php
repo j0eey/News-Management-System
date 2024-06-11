@@ -8,6 +8,7 @@ use App\Http\Controllers\TagsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\AdminMemberController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\EnsureUserIsSuperAdmin;
 use App\Http\Middleware\Authenticate;
 
@@ -42,3 +43,6 @@ Route::middleware([EnsureUserIsSuperAdmin::class])->prefix('admin')->group(funct
 });
 
 Route::get('/user-permissions', [AdminMemberController::class, 'getUserPermissions'])->name('user.permissions');
+
+Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');

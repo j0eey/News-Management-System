@@ -13,7 +13,7 @@
     @yield('body')
     <script src="{{ url('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ url('js/jquery-3.6.0.min.js') }}"></script>
-    <script src="{{ url('js/disable-element.js') }}"></script>
+    <!-- <script src="{{ url('js/disable-element.js') }}"></script> -->
     @stack('scripts')
   </body>
 </html> 

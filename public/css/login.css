@@ -14,7 +14,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 450px;
-    height: 350px;
+    height: 370px;
     text-align: center;
     margin-left: auto;
     margin-right: 100px; 
@@ -80,4 +80,5 @@ li{
 .alert ul li {
     margin-left: -10px;
     padding-right: 225px;
+    margin-top: -2px;
 }
