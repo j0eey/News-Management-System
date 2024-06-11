@@ -19,6 +19,8 @@ p{
 .pagination{
     margin-left: 40%;
 }
-.close{
-    margin-left: 10px;
+.close {
+    position: absolute;
+    left: 740px;
+    top: 10px;
 }

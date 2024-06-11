@@ -58,7 +58,7 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="permissionsModalLabel">Permissions for <span id="permissionsMemberName"></span></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <img src="{{ url('images/close-button.png') }}" alt="Close">
                 </button>
             </div>
             <div class="modal-body">
