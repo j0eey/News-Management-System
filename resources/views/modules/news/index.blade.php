@@ -10,14 +10,12 @@
 @include("layouts.sidebar")
 
 <div class="container">
-    <div class="row mt-3">
-        <div class="col-md-6">
-            <input type="text" id="searchInput" class="form-control" placeholder="Search...">
-        </div>
-    </div>
-
     <a href="{{ route('news.create') }}" class="btn btn-primary mt-3" data-permission="create_news">Add News</a>
-
+    <div class="row mt-3">
+    <div class="col-md-6">
+        <input type="text" id="searchInput" class="form-control" placeholder="Search...">
+    </div>
+    </div>
     <table class="table mt-3">
         <thead>
             <tr>
@@ -71,7 +69,6 @@
 @push('scripts')
 <script src="{{ url('js/permissions.js') }}"></script>
 <script>
-    // Real-time search functionality
     $(document).ready(function () {
         $('#searchInput').on('keyup', function () {
             var query = $(this).val();
@@ -80,10 +77,14 @@
                 url: "{{ route('news.search') }}",
                 type: "GET",
                 data: {
+                _token:"{{ csrf_token() }}",
                     query: query
                 },
                 success: function (data) {
                     $('#newsTableBody').html(data);
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error occurred during search request:", error);
                 }
             });
         });

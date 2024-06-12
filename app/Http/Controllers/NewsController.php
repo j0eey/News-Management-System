@@ -243,6 +243,7 @@ class NewsController extends Controller
     public function search(Request $request)
     {
         $query = $request->get('query');
+        Log::info('Search query:', ['query' => $query]); // Log the search query
 
         $news = News::where('title', 'like', "%$query%")
                     ->orWhereHas('creator', function ($q) use ($query) {
@@ -257,8 +258,11 @@ class NewsController extends Controller
                     })
                     ->get();
 
+        Log::info('Search results count:', ['count' => $news->count()]); // Log the count of search results
+
         return view('news.search_results', compact('news'));
     }
+
 
 
 

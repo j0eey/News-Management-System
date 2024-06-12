@@ -11,7 +11,7 @@
     <h3 class="logo-text">News Management System</h3>
 </div>
 <div class="login-box">
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('login.submit') }}">
         @csrf
         <h2>Sign In</h2>
         <div class="input-container">

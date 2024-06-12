@@ -9,12 +9,11 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\AdminMemberController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SearchController;
 use App\Http\Middleware\EnsureUserIsSuperAdmin;
 use App\Http\Middleware\Authenticate;
 
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login')->middleware('guest');
-Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.show')->middleware('guest');
+Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware([Authenticate::class])->group(function () {
@@ -44,4 +43,5 @@ Route::get('/user-permissions', [AdminMemberController::class, 'getUserPermissio
 
 Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
 Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
 
