@@ -240,5 +240,27 @@ class NewsController extends Controller
         return view('modules.news.show', compact('news'));
     }
 
+    public function search(Request $request)
+    {
+        $query = $request->get('query');
+
+        $news = News::where('title', 'like', "%$query%")
+                    ->orWhereHas('creator', function ($q) use ($query) {
+                        $q->where('name', 'like', "%$query%");
+                    })
+                    ->orWhere('created_at', 'like', "%$query%")
+                    ->orWhereHas('category', function ($q) use ($query) {
+                        $q->where('title', 'like', "%$query%");
+                    })
+                    ->orWhereHas('tags', function ($q) use ($query) {
+                        $q->where('title', 'like', "%$query%");
+                    })
+                    ->get();
+
+        return view('news.search_results', compact('news'));
+    }
+
+
+
 
 }

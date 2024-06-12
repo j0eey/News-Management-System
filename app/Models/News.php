@@ -33,4 +33,5 @@ class News extends Model implements HasMedia
     {
         return $this->belongsToMany(Tag::class, 'news_tags', 'news_id', 'tag_id');
     }
+    
 }

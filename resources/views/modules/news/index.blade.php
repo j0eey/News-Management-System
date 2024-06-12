@@ -10,7 +10,14 @@
 @include("layouts.sidebar")
 
 <div class="container">
-    <a href="{{ route('news.create') }}" class="btn btn-primary" data-permission="create_news">Add News</a>
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <input type="text" id="searchInput" class="form-control" placeholder="Search...">
+        </div>
+    </div>
+
+    <a href="{{ route('news.create') }}" class="btn btn-primary mt-3" data-permission="create_news">Add News</a>
+
     <table class="table mt-3">
         <thead>
             <tr>
@@ -23,18 +30,14 @@
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="newsTableBody">
             @foreach($news as $item)
             <tr>
-                <td>
-                    <a href="{{ route('news.show', $item->id) }}">{{ $item->title }}</a>
-                </td>
+                <td><a href="{{ route('news.show', $item->id) }}">{{ $item->title }}</a></td>
                 <td><a href="{{ route('news.show', $item->id) }}">{!! Str::limit(strip_tags($item->description), 50) !!}</a></td>
                 <td>
                     @if($item->main_image_id)
-                        @php
-                            $mainImage = $item->getMedia('images')->where('id', $item->main_image_id)->first();
-                        @endphp
+                        @php $mainImage = $item->getMedia('images')->where('id', $item->main_image_id)->first(); @endphp
                         @if($mainImage)
                             <img src="{{ $mainImage->getUrl() }}" alt="{{ $item->title }}" width="100">
                         @else
@@ -46,7 +49,6 @@
                         <span>No Image Found</span>
                     @endif
                 </td>
-
                 <td>{{ $item->custom_date }}</td>
                 <td>{{ $item->category->title }}</td>
                 <td>{{ implode(', ', $item->tags->pluck('title')->toArray() ?? []) }}</td>
@@ -62,8 +64,29 @@
             @endforeach
         </tbody>
     </table>
+
     {{ $news->links('pagination::bootstrap-4') }}
 </div>
+
 @push('scripts')
 <script src="{{ url('js/permissions.js') }}"></script>
+<script>
+    // Real-time search functionality
+    $(document).ready(function () {
+        $('#searchInput').on('keyup', function () {
+            var query = $(this).val();
+
+            $.ajax({
+                url: "{{ route('news.search') }}",
+                type: "GET",
+                data: {
+                    query: query
+                },
+                success: function (data) {
+                    $('#newsTableBody').html(data);
+                }
+            });
+        });
+    });
+</script>
 @endpush

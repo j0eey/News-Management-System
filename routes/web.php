@@ -9,27 +9,25 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\AdminMemberController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchController;
 use App\Http\Middleware\EnsureUserIsSuperAdmin;
 use App\Http\Middleware\Authenticate;
-
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
 Route::middleware([Authenticate::class])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
 });
 
-Route::resource('news', NewsController::class);
 Route::resource('tags', TagsController::class);
 Route::resource('categories', CategoryController::class);
 Route::delete('/media/{media}', [NewsController::class, 'deleteMedia'])->name('media.destroy');
-Route::middleware(['auth'])->group(function () {
-    Route::resource('news', NewsController::class);
-});
 
+Route::resource('news', NewsController::class);
 Route::post('/news/{news}/upload-images', [NewsController::class, 'uploadImages'])->name('news.uploadImages');
+Route::get('/news/search', [NewsController::class, 'search'])->name('news.search');
 
 Route::middleware([EnsureUserIsSuperAdmin::class])->prefix('admin')->group(function () {
     Route::get('/members', [AdminMemberController::class, 'index'])->name('admin.members.index');
@@ -46,3 +44,4 @@ Route::get('/user-permissions', [AdminMemberController::class, 'getUserPermissio
 
 Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
 Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
