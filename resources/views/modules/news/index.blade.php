@@ -70,17 +70,26 @@
 <script src="{{ url('js/permissions.js') }}"></script>
 <script>
     $(document).ready(function () {
+        // Add CSRF token to every AJAX request
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         $('#searchInput').on('keyup', function () {
             var query = $(this).val();
+
+            console.log("Search query:", query); // Log the query
 
             $.ajax({
                 url: "{{ route('news.search') }}",
                 type: "GET",
                 data: {
-                _token:"{{ csrf_token() }}",
                     query: query
                 },
                 success: function (data) {
+                    console.log("Search results:", data); // Log the results
                     $('#newsTableBody').html(data);
                 },
                 error: function (xhr, status, error) {
