@@ -14,7 +14,7 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $news = News::with('tags')->paginate(15);
+        $news = News::with('tags')->latest()->paginate(15);
         return view('modules.news.index', compact('news'));
     }
 
@@ -242,22 +242,25 @@ class NewsController extends Controller
 
     public function search(Request $request)
     {
-        $query = $request->get('query');
+        $query = $request->input('query');
 
-        $news = News::where('title', 'like', "%$query%")
-                    ->orWhereHas('creator', function ($q) use ($query) {
-                        $q->where('name', 'like', "%$query%");
-                    })
-                    ->orWhere('created_at', 'like', "%$query%")
+        // Perform the search query with sorting
+        $news = News::where('title', 'LIKE', "%{$query}%")
+                    ->orWhere('description', 'LIKE', "%{$query}%")
                     ->orWhereHas('category', function ($q) use ($query) {
-                        $q->where('title', 'like', "%$query%");
+                        $q->where('title', 'LIKE', "%{$query}%");
                     })
                     ->orWhereHas('tags', function ($q) use ($query) {
-                        $q->where('title', 'like', "%$query%");
+                        $q->where('title', 'LIKE', "%{$query}%");
                     })
+                    ->with('category', 'tags', 'media')
+                    ->orderBy('created_at', 'asc') // Ensure ascending order
                     ->get();
 
-        return view('news.search_results', compact('news'));
+        // Render the partial view with the search results
+        $html = view('modules.news.partials.news_table_body', compact('news'))->render();
+
+        return response()->json(['html' => $html]);
     }
 
 }

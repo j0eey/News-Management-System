@@ -157,7 +157,6 @@ class AdminMemberController extends Controller
         }
     }
 
-
     public function savePermissions(Request $request)
     {
         $memberId = $request->input('member_id');
@@ -206,8 +205,6 @@ class AdminMemberController extends Controller
         $permissions = $user->permissions->pluck('name')->toArray();
 
         return response()->json(['permissions' => $permissions]);
-    }
-
-    
+    }    
 
 }
