@@ -15,6 +15,10 @@ class News extends Model implements HasMedia
     protected $fillable = [
         'title', 'description', 'custom_date', 'category_id', 'user_id', 'main_image_id'
     ];
+    
+    protected $casts = [
+        'custom_date' => 'date',
+    ];
 
     // Define the relationship with User model
     public function user()
@@ -32,6 +36,12 @@ class News extends Model implements HasMedia
     public function tags()
     {
         return $this->belongsToMany(Tag::class, 'news_tags', 'news_id', 'tag_id');
+    }
+
+    public function getImageUrlAttribute()
+    {
+        $media = $this->getFirstMedia('images');
+        return $media ? $media->getUrl() : 'default-image-url.jpg'; // Replace with a default image URL if needed
     }
     
 }

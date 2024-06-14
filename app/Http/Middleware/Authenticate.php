@@ -23,7 +23,7 @@ class Authenticate
         }
 
         if (!Auth::check()) {
-            return redirect()->route('login');
+            return redirect()->route('login-form');
         }
 
         return $next($request);

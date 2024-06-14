@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\AdminMemberController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HomeController;
 use App\Http\Middleware\EnsureUserIsSuperAdmin;
 use App\Http\Middleware\Authenticate;
 
@@ -20,7 +21,6 @@ Route::middleware([Authenticate::class])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
-
 Route::resource('tags', TagsController::class);
 Route::resource('categories', CategoryController::class);
 Route::delete('/media/{media}', [NewsController::class, 'deleteMedia'])->name('media.destroy');
@@ -28,7 +28,6 @@ Route::delete('/media/{media}', [NewsController::class, 'deleteMedia'])->name('m
 Route::get('/news/search', [NewsController::class, 'search'])->name('news.search');
 Route::resource('news', NewsController::class);
 Route::post('/news/{news}/upload-images', [NewsController::class, 'uploadImages'])->name('news.uploadImages');
-
 
 Route::middleware([EnsureUserIsSuperAdmin::class])->prefix('admin')->group(function () {
     Route::get('/members', [AdminMemberController::class, 'index'])->name('admin.members.index');
@@ -45,3 +44,6 @@ Route::get('/user-permissions', [AdminMemberController::class, 'getUserPermissio
 
 Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
 Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/api/latest-news', [NewsController::class, 'latestNews']);

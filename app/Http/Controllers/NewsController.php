@@ -263,4 +263,22 @@ class NewsController extends Controller
         return response()->json(['html' => $html]);
     }
 
+    public function latestNews()
+    {
+        $news = News::with('category')->orderBy('created_at', 'desc')->take(7)->get()->map(function ($item) {
+            return [
+                'title' => $item->title,
+                'category' => $item->category ? $item->category->title : 'Uncategorized',
+                'custom_date' => $item->custom_date->format('M d, Y'),
+                'image_url' => $item->image_url,
+                'link' => route('news.show', $item->id),
+            ];
+        });
+
+        return response()->json($news);
+    }
+
+
+
+
 }
