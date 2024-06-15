@@ -267,7 +267,7 @@ class NewsController extends Controller
     {
         $news = News::with(['category', 'mainImage', 'tags'])
             ->orderBy('created_at', 'desc')
-            ->take(9)
+            ->take(14)
             ->get()
             ->map(function ($item) {
                 return [

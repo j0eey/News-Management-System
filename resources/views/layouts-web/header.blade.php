@@ -1,3 +1,4 @@
+<!-- Topbar Start -->
 <header>
     <div class="container-fluid d-none d-lg-block">
         <div class="row align-items-center bg-dark px-lg-5">
@@ -43,6 +44,9 @@
             </div>
         </div>
     </div>
+    <!-- Topbar End -->
+
+    <!-- Navbar Start -->
     <div class="container-fluid p-0">
         <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-2 py-lg-0 px-lg-5">
             <a href="index.html" class="navbar-brand d-block d-lg-none">
@@ -78,5 +82,6 @@
             </div>
         </nav>
     </div>
+    <!-- Navbar End -->
 </header>
 

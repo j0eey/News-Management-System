@@ -4,6 +4,7 @@
 
 @include("layouts-web.header")
 
+<!-- Main News Slider Start -->
 <div class="container-fluid" id="news-container">
     <div class="row">
         <div class="col-lg-7 px-0">
@@ -18,7 +19,9 @@
         </div>
     </div>
 </div>
+<!-- Main News Slider End -->
 
+<!-- Breaking News Start -->
 <div class="container-fluid bg-dark py-3 mb-3">
     <div class="container">
         <div class="row align-items-center bg-dark">
@@ -34,6 +37,20 @@
         </div>
     </div>
 </div>
+<!-- Breaking News End -->
+
+<!-- Featured News Slider Start -->
+<div class="container-fluid pt-5 mb-3">
+    <div class="container">
+        <div class="section-title">
+            <h4 class="m-0 text-uppercase font-weight-bold">Featured News</h4>
+        </div>
+        <div class="owl-carousel news-carousel carousel-item-4 position-relative" id="featured-news-carousel">
+            <!-- Featured news will be dynamically added here -->
+        </div>
+    </div>
+</div>
+<!-- Featured News Slider End -->
 
 
 
