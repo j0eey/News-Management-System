@@ -33,7 +33,7 @@
                 </div>
                 <div class="form-group">
                     <label for="custom_date">Updated Date</label>
-                    <input type="date" name="custom_date" class="form-control" value="{{ $news->custom_date }}" required>
+                    <input type="date" name="custom_date" class="form-control" value="{{ $news->custom_date->format('Y-m-d') }}" required>
                 </div>
                 <div class="form-group">
                     <label for="category">Category</label>

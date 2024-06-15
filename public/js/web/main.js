@@ -17,7 +17,8 @@
         toggleNavbarMethod();
         $(window).resize(toggleNavbarMethod);
     });
-
+    
+    
     // Back to top button
     $(window).scroll(function () {
         if ($(this).scrollTop() > 100) {
@@ -31,15 +32,7 @@
         return false;
     });
 
-    // Main News carousel
-    $(".main-carousel").owlCarousel({
-        autoplay: true,
-        smartSpeed: 1500,
-        items: 1,
-        dots: true,
-        loop: true,
-        center: true,
-    });
+
 
     // Tranding carousel
     $(".tranding-carousel").owlCarousel({
@@ -54,6 +47,7 @@
             '<i class="fa fa-angle-right"></i>'
         ]
     });
+
 
     // Carousel item 1
     $(".carousel-item-1").owlCarousel({
@@ -94,6 +88,7 @@
         }
     });
 
+
     // Carousel item 3
     $(".carousel-item-3").owlCarousel({
         autoplay: true,
@@ -121,6 +116,7 @@
             }
         }
     });
+    
 
     // Carousel item 4
     $(".carousel-item-4").owlCarousel({
@@ -152,4 +148,6 @@
             }
         }
     });
+    
 })
+

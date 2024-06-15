@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 
 class News extends Model implements HasMedia
@@ -15,10 +16,12 @@ class News extends Model implements HasMedia
     protected $fillable = [
         'title', 'description', 'custom_date', 'category_id', 'user_id', 'main_image_id'
     ];
+
     
     protected $casts = [
         'custom_date' => 'date',
     ];
+    
 
     // Define the relationship with User model
     public function user()
@@ -38,10 +41,14 @@ class News extends Model implements HasMedia
         return $this->belongsToMany(Tag::class, 'news_tags', 'news_id', 'tag_id');
     }
 
-    public function getImageUrlAttribute()
+    public function mainImage()
     {
-        $media = $this->getFirstMedia('images');
-        return $media ? $media->getUrl() : 'default-image-url.jpg'; // Replace with a default image URL if needed
+        return $this->hasOne(Media::class, 'id', 'main_image_id');
+    }
+
+    public function getMainImageUrlAttribute()
+    {
+        return $this->mainImage ? $this->mainImage->getUrl() : '/path/to/default-image.jpg';
     }
     
 }

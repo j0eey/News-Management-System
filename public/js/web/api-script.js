@@ -14,12 +14,12 @@ function updateNews(news) {
 
     news.forEach((item, index) => {
         const newsHtml = `
-            <div class="position-relative overflow-hidden" style="height: ${index < 3 ? '500px' : '250px'};">
+            <div class="item position-relative overflow-hidden" style="height: ${index < 3 ? '500px' : '250px'};">
                 <img class="img-fluid ${index < 3 ? 'h-100' : 'w-100 h-100'}" src="${item.image_url}" style="object-fit: cover;">
                 <div class="overlay">
                     <div class="mb-2">
-                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2" href="">${item.category}</a>
-                        <a class="text-white" href=""><small>${item.custom_date}</small></a>
+                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2" href="#">${item.category}</a>
+                        <a class="text-white" href="#"><small>${item.custom_date}</small></a>
                     </div>
                     <a class="${index < 3 ? 'h2 m-0' : 'h6 m-0'} text-white text-uppercase font-weight-${index < 3 ? 'bold' : 'semi-bold'}" href="${item.link}">${item.title}</a>
                 </div>
@@ -33,5 +33,19 @@ function updateNews(news) {
                     ${newsHtml}
                 </div>`;
         }
+    });
+
+    // Initialize Owl Carousel after news items are added
+    initializeOwlCarousel();
+}
+// Main News carousel
+function initializeOwlCarousel() {
+    $(".main-carousel").owlCarousel({
+        autoplay: true,
+        smartSpeed: 1500,
+        items: 1,
+        dots: true,
+        loop: true,
+        center: true,
     });
 }
