@@ -71,11 +71,8 @@
 </div>
 
 @push('scripts')
-<script src="{{ url('js/ckeditor.js') }}"></script>
 <script src="{{ url('js/news/create.js') }}"></script>
 <script src="{{ url('js/news/create-media.js') }}"></script>
 <script src="{{ url('js/jquery-3.5.1.min.js') }}"></script>
 <script src="{{ url('js/bootstrap.min.js') }}"></script>
-
-
 @endpush

@@ -11,6 +11,7 @@
   </head>
   <body>
     @yield('body')
+    <script src="{{ url('js/ckeditor.js') }}"></script>
     <script src="{{ url('js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ url('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ url('js/disable-element.js') }}"></script>

@@ -265,18 +265,24 @@ class NewsController extends Controller
 
     public function latestNews()
     {
-        $news = News::with('category', 'mainImage')->orderBy('created_at', 'desc')->take(7)->get()->map(function ($item) {
-            return [
-                'title' => $item->title,
-                'category' => $item->category ? $item->category->title : 'Uncategorized',
-                'custom_date' => $item->custom_date->format('M d, Y'),
-                'image_url' => $item->mainImageUrl,
-                'link' => route('news.show', $item->id),
-            ];
-        });
+        $news = News::with(['category', 'mainImage', 'tags'])
+            ->orderBy('created_at', 'desc')
+            ->take(9)
+            ->get()
+            ->map(function ($item) {
+                return [
+                    'title' => $item->title,
+                    'category' => $item->category ? $item->category->title : 'Uncategorized',
+                    'custom_date' => $item->custom_date->format('M d, Y'),
+                    'image_url' => $item->mainImageUrl,
+                    'link' => route('news.show', $item->id),
+                    'tags' => $item->tags->pluck('title')->toArray(),
+                ];
+            });
 
         return response()->json($news);
     }
+
 
 
 }
