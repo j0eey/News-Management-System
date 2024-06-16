@@ -27,9 +27,6 @@
                             <a class="nav-link text-body" href="#"><small class="fab fa-facebook-f"></small></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-body" href="#"><small class="fab fa-linkedin-in"></small></a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-body" href="#"><small class="fab fa-instagram"></small></a>
                         </li>
                     </ul>
