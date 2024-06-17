@@ -47,3 +47,5 @@ Route::post('/profile', [ProfileController::class, 'update'])->name('profile.upd
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/api/latest-news', [NewsController::class, 'latestNews']);
+Route::get('/football', [HomeController::class, 'footballPage'])->name('football');
+Route::get('/euro2024', [HomeController::class, 'euro2024Page'])->name('euro24');

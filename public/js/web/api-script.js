@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", function() {
         .catch(error => console.error('Error fetching news:', error));
 });
 
-
 function updateNews(news) {
     const mainCarousel = document.getElementById('main-carousel');
     const secondaryNews = document.getElementById('secondary-news');
@@ -22,8 +21,14 @@ function updateNews(news) {
     if (trendingNews) trendingNews.innerHTML = '';
 
     let latestNewsRow;
+    let mainCarouselCount = 0;
+    let secondaryNewsCount = 0;
+    let announcementCount = 0;
+    let featuredNewsCount = 0;
+    let latestNewsCount = 0;
+    let trendingNewsCount = 0;
 
-    news.forEach((item, index) => {
+    news.forEach((item) => {
         try {
             const isMainCarousel = item.tags.includes('Main Carousel');
             const isSecondaryNews = item.tags.includes('Secondary News');
@@ -74,34 +79,40 @@ function updateNews(news) {
                     </div>
                 </div>`;
 
-            if (isMainCarousel && mainCarousel) {
+            if (isMainCarousel && mainCarouselCount < 3 && mainCarousel) {
                 mainCarousel.innerHTML += newsHtml;
+                mainCarouselCount++;
             }
-            if (isSecondaryNews && secondaryNews) {
+            if (isSecondaryNews && secondaryNewsCount < 4 && secondaryNews) {
                 secondaryNews.innerHTML += `
                     <div class="col-md-6 px-0">
                         ${newsHtml}
                     </div>`;
+                secondaryNewsCount++;
             }
-            if (isAnnouncement && announcementsCarousel) {
+            if (isAnnouncement && announcementCount < 4 && announcementsCarousel) {
                 announcementsCarousel.innerHTML += `
                     <div class="text-truncate">
                         <a class="text-white text-uppercase font-weight-semi-bold" href="${item.link}">${item.title}</a>
                     </div>`;
+                announcementCount++;
             }
-            if (isFeaturedNews && featuredNewsCarousel) {
+            if (isFeaturedNews && featuredNewsCount < 5 && featuredNewsCarousel) {
                 featuredNewsCarousel.innerHTML += newsHtml;
+                featuredNewsCount++;
             }
-            if (isLatestNews && latestNews) {
+            if (isLatestNews && latestNewsCount < 4 && latestNews) {
                 if (!latestNewsRow || latestNewsRow.children.length >= 2) {
                     latestNewsRow = document.createElement('div');
                     latestNewsRow.classList.add('row');
                     latestNews.appendChild(latestNewsRow);
                 }
                 latestNewsRow.innerHTML += latestNewsHtml;
+                latestNewsCount++;
             }
-            if (isTrendingNews && trendingNews) {
+            if (isTrendingNews && trendingNewsCount < 5 && trendingNews) {
                 trendingNews.innerHTML += trendingNewsHtml;
+                trendingNewsCount++;
             }
         } catch (error) {
             console.error('Error processing news item:', item, error);
@@ -110,7 +121,6 @@ function updateNews(news) {
 
     initializeOwlCarousel();
 }
-
 
 function truncateTitle(title, wordLimit) {
     const words = title.split(' ');
@@ -166,43 +176,15 @@ function initializeOwlCarousel() {
         ]
     });
 
-    // Carousel item 2
-    $(".carousel-item-2").owlCarousel({
-        autoplay: true,
-        smartSpeed: 1000,
-        margin: 30,
-        dots: false,
-        loop: true,
-        nav : true,
-        navText : [
-            '<i class="fa fa-angle-left" aria-hidden="true"></i>',
-            '<i class="fa fa-angle-right" aria-hidden="true"></i>'
-        ],
-        responsive: {
-            0:{
-                items:1
-            },
-            576:{
-                items:1
-            },
-            768:{
-                items:2
-            }
-        }
-    });
+    
 
     // Carousel item 3
     $(".carousel-item-3").owlCarousel({
         autoplay: true,
         smartSpeed: 1000,
         margin: 30,
-        dots: false,
+        dots: true,
         loop: true,
-        nav : true,
-        navText : [
-            '<i class="fa fa-angle-left" aria-hidden="true"></i>',
-            '<i class="fa fa-angle-right" aria-hidden="true"></i>'
-        ],
         responsive: {
             0:{
                 items:1
@@ -218,19 +200,14 @@ function initializeOwlCarousel() {
             }
         }
     });
-    
+
     // Carousel item 4
     $(".carousel-item-4").owlCarousel({
         autoplay: true,
         smartSpeed: 1000,
         margin: 30,
-        dots: false,
+        dots: true,
         loop: true,
-        nav : true,
-        navText : [
-            '<i class="fa fa-angle-left" aria-hidden="true"></i>',
-            '<i class="fa fa-angle-right" aria-hidden="true"></i>'
-        ],
         responsive: {
             0:{
                 items:1
@@ -243,13 +220,11 @@ function initializeOwlCarousel() {
             },
             992:{
                 items:3
-            },
-            1200:{
-                items:4
             }
         }
     });
 }
+
 
 document.addEventListener('DOMContentLoaded', function() {
     const backToTopButton = document.querySelector('.back-to-top');

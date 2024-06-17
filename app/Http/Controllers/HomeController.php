@@ -10,4 +10,14 @@ class HomeController extends Controller
     {
         return view('layouts-web.home');
     }
+    
+    public function footballPage()
+    {
+        return view('categories.football');
+    }
+
+    public function euro2024Page()
+    {
+        return view('categories.euro24');
+    }
 }

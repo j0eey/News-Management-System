@@ -35,7 +35,7 @@
         </div>
         <div class="row align-items-center bg-white py-3 px-lg-5">
             <div class="col-lg-4">
-                <a href="index.html" class="navbar-brand p-0 d-none d-lg-block">
+                <a href="/" class="navbar-brand p-0 d-none d-lg-block">
                     <h1 class="m-0 display-4 text-uppercase text-primary">Sports<span class="text-secondary font-weight-normal">News.com</span></h1>
                 </a>
             </div>
@@ -54,9 +54,9 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
                 <div class="navbar-nav mr-auto py-0">
-                    <a href="security.html" class="nav-item nav-link">Euro 2024</a>
+                    <a href="euro2024" class="nav-item nav-link">Euro 2024</a>
                     <a href="category.html" class="nav-item nav-link">Paris 2024</a>
-                    <a href="single.html" class="nav-item nav-link">Football</a>
+                    <a href="football" class="nav-item nav-link">Football</a>
                     <a href="single.html" class="nav-item nav-link">Tennis</a>
                     <a href="single.html" class="nav-item nav-link">Basketball</a>
                     <div class="nav-item dropdown">
