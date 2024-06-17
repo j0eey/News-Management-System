@@ -1,23 +1,23 @@
 document.addEventListener("DOMContentLoaded", function() {
     fetch('/api/latest-news')
         .then(response => response.json())
-        .then(data => filterAndDisplayFootballNews(data))
+        .then(data => filterAndDisplayTennisNews(data))
         .catch(error => console.error('Error fetching news:', error));
 });
 
-function filterAndDisplayFootballNews(news) {
-    const footballNews = news.filter(item => item.category.toLowerCase() === 'football');
+function filterAndDisplayTennisNews(news) {
+    const tennisNews = news.filter(item => item.category.toLowerCase() === 'tennis');
 
-    const footballCategory = document.getElementById('football_category');
+    const tennisCategory = document.getElementById('tennis_category');
 
-    if (footballCategory) {
-        footballCategory.innerHTML = '';
+    if (tennisCategory) {
+        tennisCategory.innerHTML = '';
 
         let newsRow; 
-        let newsCount = 0; 
+        let newsCount = 0; // Counter for the number of news articles displayed
 
-        footballNews.forEach(item => {
-            if (newsCount >= 6) return; 
+        tennisNews.forEach(item => {
+            if (newsCount >= 6) return; // Stop iterating if maximum count is reached
 
             const truncatedTitle = truncateTitle(item.title, 8);
             const truncatedDescription = truncateDescription(item.description, 20);
@@ -38,7 +38,7 @@ function filterAndDisplayFootballNews(news) {
             if (!newsRow || newsRow.children.length >= 2) {
                 newsRow = document.createElement('div');
                 newsRow.classList.add('row');
-                footballCategory.appendChild(newsRow);
+                tennisCategory.appendChild(newsRow);
             }
 
             newsRow.innerHTML += newsHtml;

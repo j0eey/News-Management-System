@@ -1,22 +1,22 @@
 document.addEventListener("DOMContentLoaded", function() {
     fetch('/api/latest-news')
         .then(response => response.json())
-        .then(data => filterAndDisplayFootballNews(data))
+        .then(data => filterAndDisplayRugbyNews(data))
         .catch(error => console.error('Error fetching news:', error));
 });
 
-function filterAndDisplayFootballNews(news) {
-    const footballNews = news.filter(item => item.category.toLowerCase() === 'football');
+function filterAndDisplayRugbyNews(news) {
+    const rugbyNews = news.filter(item => item.category.toLowerCase() === 'rugby');
 
-    const footballCategory = document.getElementById('football_category');
+    const rugbyCategory = document.getElementById('rugby_category');
 
-    if (footballCategory) {
-        footballCategory.innerHTML = '';
+    if (rugbyCategory) {
+        rugbyCategory.innerHTML = '';
 
         let newsRow; 
         let newsCount = 0; 
 
-        footballNews.forEach(item => {
+        rugbyNews.forEach(item => {
             if (newsCount >= 6) return; 
 
             const truncatedTitle = truncateTitle(item.title, 8);
@@ -38,7 +38,7 @@ function filterAndDisplayFootballNews(news) {
             if (!newsRow || newsRow.children.length >= 2) {
                 newsRow = document.createElement('div');
                 newsRow.classList.add('row');
-                footballCategory.appendChild(newsRow);
+                rugbyCategory.appendChild(newsRow);
             }
 
             newsRow.innerHTML += newsHtml;

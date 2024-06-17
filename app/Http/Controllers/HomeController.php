@@ -20,4 +20,39 @@ class HomeController extends Controller
     {
         return view('categories.euro24');
     }
+
+    public function tennisPage()
+    {
+        return view('categories.tennis');
+    }
+
+    public function paris2024Page()
+    {
+        return view('categories.paris24');
+    }
+
+    public function basketballPage()
+    {
+        return view('categories.basketball');
+    }
+
+    public function volleyballPage()
+    {
+        return view('categories.volleyball');
+    }
+
+    public function f1Page()
+    {
+        return view('categories.f1');
+    }
+
+    public function handballPage()
+    {
+        return view('categories.handball');
+    }
+
+    public function rugbyPage()
+    {
+        return view('categories.rugby');
+    }
 }

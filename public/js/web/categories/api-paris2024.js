@@ -1,23 +1,23 @@
 document.addEventListener("DOMContentLoaded", function() {
     fetch('/api/latest-news')
         .then(response => response.json())
-        .then(data => filterAndDisplayFootballNews(data))
+        .then(data => filterAndDisplayParis2024News(data))
         .catch(error => console.error('Error fetching news:', error));
 });
 
-function filterAndDisplayFootballNews(news) {
-    const footballNews = news.filter(item => item.category.toLowerCase() === 'football');
+function filterAndDisplayParis2024News(news) {
+    const paris2024News = news.filter(item => item.category.toLowerCase() === 'paris 2024');
 
-    const footballCategory = document.getElementById('football_category');
+    const paris2024Category = document.getElementById('paris2024_category');
 
-    if (footballCategory) {
-        footballCategory.innerHTML = '';
+    if (paris2024Category) {
+        paris2024Category.innerHTML = '';
 
         let newsRow; 
-        let newsCount = 0; 
+        let newsCount = 0; // Counter for the number of news articles displayed
 
-        footballNews.forEach(item => {
-            if (newsCount >= 6) return; 
+        paris2024News.forEach(item => {
+            if (newsCount >= 6) return; // Stop iterating if maximum count is reached
 
             const truncatedTitle = truncateTitle(item.title, 8);
             const truncatedDescription = truncateDescription(item.description, 20);
@@ -38,7 +38,7 @@ function filterAndDisplayFootballNews(news) {
             if (!newsRow || newsRow.children.length >= 2) {
                 newsRow = document.createElement('div');
                 newsRow.classList.add('row');
-                footballCategory.appendChild(newsRow);
+                paris2024Category.appendChild(newsRow);
             }
 
             newsRow.innerHTML += newsHtml;
