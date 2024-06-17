@@ -5,43 +5,6 @@ document.addEventListener("DOMContentLoaded", function() {
         .catch(error => console.error('Error fetching news:', error));
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const backToTopButton = document.querySelector('.back-to-top');
-
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 300) {
-            backToTopButton.style.display = 'block';
-        } else {
-            backToTopButton.style.display = 'none';
-        }
-    });
-
-    backToTopButton.addEventListener('click', function(event) {
-        event.preventDefault();
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-});
-
-// Dropdown on mouse hover
-$(document).ready(function () {
-    function toggleNavbarMethod() {
-        if ($(window).width() > 992) {
-            $('.navbar .dropdown').on('mouseover', function () {
-                $('.dropdown-toggle', this).trigger('click');
-            }).on('mouseout', function () {
-                $('.dropdown-toggle', this).trigger('click').blur();
-            });
-        } else {
-            $('.navbar .dropdown').off('mouseover').off('mouseout');
-        }
-    }
-    toggleNavbarMethod();
-    $(window).resize(toggleNavbarMethod);
-});
-
 
 function updateNews(news) {
     const mainCarousel = document.getElementById('main-carousel');
@@ -287,3 +250,40 @@ function initializeOwlCarousel() {
         }
     });
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const backToTopButton = document.querySelector('.back-to-top');
+
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 300) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    });
+
+    backToTopButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+});
+
+// Dropdown on mouse hover
+$(document).ready(function () {
+    function toggleNavbarMethod() {
+        if ($(window).width() > 992) {
+            $('.navbar .dropdown').on('mouseover', function () {
+                $('.dropdown-toggle', this).trigger('click');
+            }).on('mouseout', function () {
+                $('.dropdown-toggle', this).trigger('click').blur();
+            });
+        } else {
+            $('.navbar .dropdown').off('mouseover').off('mouseout');
+        }
+    }
+    toggleNavbarMethod();
+    $(window).resize(toggleNavbarMethod);
+});
