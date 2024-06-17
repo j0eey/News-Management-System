@@ -56,3 +56,4 @@ Route::get('/volleyball', [HomeController::class, 'volleyballPage'])->name('voll
 Route::get('/f1', [HomeController::class, 'f1Page'])->name('f1');
 Route::get('/handball', [HomeController::class, 'handballPage'])->name('handball');
 Route::get('/rugby', [HomeController::class, 'rugbyPage'])->name('rugby');
+

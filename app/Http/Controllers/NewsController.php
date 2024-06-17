@@ -283,6 +283,8 @@ class NewsController extends Controller
         return response()->json($news);
     }
 
+    
+
 
 
 

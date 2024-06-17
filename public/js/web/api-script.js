@@ -45,8 +45,8 @@ function updateNews(news) {
                     <img class="img-fluid ${isMainCarousel ? 'h-100' : 'w-100 h-100'}" src="${item.image_url}" style="object-fit: cover;">
                     <div class="overlay">
                         <div class="mb-2">
-                            <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2" href="#">${item.category}</a>
-                            <a class="text-white" href="#"><small>${item.custom_date}</small></a>
+                            <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2">${item.category}</a>
+                            <a class="text-white"><small>${item.custom_date}</small></a>
                         </div>
                         <a class="${isMainCarousel ? 'h2 m-0' : 'h6 m-0'} text-white text-uppercase font-weight-${isMainCarousel ? 'bold' : 'semi-bold'}" href="${item.link}">${truncatedTitle}</a>
                     </div>
@@ -58,8 +58,8 @@ function updateNews(news) {
                         <img class="img-fluid w-100" src="${item.image_url}" style="object-fit: cover;">
                         <div class="bg-white border border-top-0 p-4">
                             <div class="mb-2">
-                                <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2" href="#">${item.category}</a>
-                                <a class="text-body" href="#"><small>${item.custom_date}</small></a>
+                                <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2">${item.category}</a>
+                                <a class="text-body"><small>${item.custom_date}</small></a>
                             </div>
                             <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="${item.link}">${truncatedTitle}</a>
                             <p class="m-0">${truncatedDescription}</p>
@@ -72,8 +72,8 @@ function updateNews(news) {
                     <img class="img-fluid" src="${item.image_url}" alt="" style="width: 110px; height: 110px; object-fit: cover;">
                     <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
                         <div class="mb-2">
-                            <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="#">${item.category}</a>
-                            <a class="text-body" href=""><small>${item.custom_date}</small></a>
+                            <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2">${item.category}</a>
+                            <a class="text-body"><small>${item.custom_date}</small></a>
                         </div>
                         <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="${item.link}">${isTrendingNews ? truncateTitle(item.title, 6) : truncatedTitle}</a>
                     </div>
