@@ -265,13 +265,14 @@ class NewsController extends Controller
 
     public function latestNews()
     {
-        $news = News::with(['category', 'mainImage', 'tags'])
+        $news = News::with(['category', 'mainImage', 'tags', 'user'])
             ->orderBy('created_at', 'desc')
-            ->take(14)
+            ->take(23)
             ->get()
             ->map(function ($item) {
                 return [
                     'title' => $item->title,
+                    'description' => $item->description,
                     'category' => $item->category ? $item->category->title : 'Uncategorized',
                     'custom_date' => $item->custom_date->format('M d, Y'),
                     'image_url' => $item->mainImageUrl,
@@ -282,6 +283,7 @@ class NewsController extends Controller
 
         return response()->json($news);
     }
+
 
 
 }

@@ -5,6 +5,26 @@ document.addEventListener("DOMContentLoaded", function() {
         .catch(error => console.error('Error fetching news:', error));
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    const backToTopButton = document.querySelector('.back-to-top');
+
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 300) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    });
+
+    backToTopButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+});
+
 // Dropdown on mouse hover
 $(document).ready(function () {
     function toggleNavbarMethod() {
@@ -22,55 +42,127 @@ $(document).ready(function () {
     $(window).resize(toggleNavbarMethod);
 });
 
+
 function updateNews(news) {
     const mainCarousel = document.getElementById('main-carousel');
     const secondaryNews = document.getElementById('secondary-news');
     const announcementsCarousel = document.getElementById('announcements-carousel');
     const featuredNewsCarousel = document.getElementById('featured-news-carousel');
+    const latestNews = document.getElementById('latest-news');
+    const trendingNews = document.getElementById('trending-news');
 
-    mainCarousel.innerHTML = '';
-    secondaryNews.innerHTML = '';
-    announcementsCarousel.innerHTML = '';
-    featuredNewsCarousel.innerHTML = '';
+    if (mainCarousel) mainCarousel.innerHTML = '';
+    if (secondaryNews) secondaryNews.innerHTML = '';
+    if (announcementsCarousel) announcementsCarousel.innerHTML = '';
+    if (featuredNewsCarousel) featuredNewsCarousel.innerHTML = '';
+    if (latestNews) latestNews.innerHTML = '';
+    if (trendingNews) trendingNews.innerHTML = '';
+
+    let latestNewsRow;
 
     news.forEach((item, index) => {
-        const isMainCarousel = item.tags.includes('Main Carousel');
-        const isSecondaryNews = item.tags.includes('Secondary News');
-        const isAnnouncement = item.tags.includes('Announcement');
-        const isFeaturedNews = item.tags.includes('Featured News');
+        try {
+            const isMainCarousel = item.tags.includes('Main Carousel');
+            const isSecondaryNews = item.tags.includes('Secondary News');
+            const isAnnouncement = item.tags.includes('Announcement');
+            const isFeaturedNews = item.tags.includes('Featured News');
+            const isLatestNews = item.tags.includes('Latest News');
+            const isTrendingNews = item.tags.includes('Trending News');
 
-        const newsHtml = `
-            <div class="item position-relative overflow-hidden" style="height: ${isMainCarousel ? '500px' : '250px'};">
-                <img class="img-fluid ${isMainCarousel ? 'h-100' : 'w-100 h-100'}" src="${item.image_url}" style="object-fit: cover;">
-                <div class="overlay">
-                    <div class="mb-2">
-                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2" href="#">${item.category}</a>
-                        <a class="text-white" href="#"><small>${item.custom_date}</small></a>
+            const truncatedTitle = isMainCarousel || isAnnouncement ? item.title : truncateTitle(item.title, 8);
+            const truncatedDescription = truncateDescription(item.description, 20);
+
+            const newsHtml = `
+                <div class="item position-relative overflow-hidden" style="height: ${isMainCarousel ? '500px' : '250px'};">
+                    <img class="img-fluid ${isMainCarousel ? 'h-100' : 'w-100 h-100'}" src="${item.image_url}" style="object-fit: cover;">
+                    <div class="overlay">
+                        <div class="mb-2">
+                            <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2" href="#">${item.category}</a>
+                            <a class="text-white" href="#"><small>${item.custom_date}</small></a>
+                        </div>
+                        <a class="${isMainCarousel ? 'h2 m-0' : 'h6 m-0'} text-white text-uppercase font-weight-${isMainCarousel ? 'bold' : 'semi-bold'}" href="${item.link}">${truncatedTitle}</a>
                     </div>
-                    <a class="${isMainCarousel ? 'h2 m-0' : 'h6 m-0'} text-white text-uppercase font-weight-${isMainCarousel ? 'bold' : 'semi-bold'}" href="${item.link}">${item.title}</a>
-                </div>
-            </div>`;
+                </div>`;
 
-        if (isMainCarousel) {
-            mainCarousel.innerHTML += newsHtml;
-        } else if (isSecondaryNews) {
-            secondaryNews.innerHTML += `
-                <div class="col-md-6 px-0">
-                    ${newsHtml}
+            const latestNewsHtml = `
+                <div class="col-lg-6 mb-3">
+                    <div class="position-relative">
+                        <img class="img-fluid w-100" src="${item.image_url}" style="object-fit: cover;">
+                        <div class="bg-white border border-top-0 p-4">
+                            <div class="mb-2">
+                                <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2" href="#">${item.category}</a>
+                                <a class="text-body" href="#"><small>${item.custom_date}</small></a>
+                            </div>
+                            <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="${item.link}">${truncatedTitle}</a>
+                            <p class="m-0">${truncatedDescription}</p>
+                        </div>
+                    </div>
                 </div>`;
-        } else if (isAnnouncement) {
-            announcementsCarousel.innerHTML += `
-                <div class="text-truncate">
-                    <a class="text-white text-uppercase font-weight-semi-bold" href="${item.link}">${item.title}</a>
+
+            const trendingNewsHtml = `
+                <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
+                    <img class="img-fluid" src="${item.image_url}" alt="" style="width: 110px; height: 110px; object-fit: cover;">
+                    <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
+                        <div class="mb-2">
+                            <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="#">${item.category}</a>
+                            <a class="text-body" href=""><small>${item.custom_date}</small></a>
+                        </div>
+                        <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="${item.link}">${isTrendingNews ? truncateTitle(item.title, 6) : truncatedTitle}</a>
+                    </div>
                 </div>`;
-        } else if (isFeaturedNews) {
-            featuredNewsCarousel.innerHTML += newsHtml;
+
+            if (isMainCarousel && mainCarousel) {
+                mainCarousel.innerHTML += newsHtml;
+            }
+            if (isSecondaryNews && secondaryNews) {
+                secondaryNews.innerHTML += `
+                    <div class="col-md-6 px-0">
+                        ${newsHtml}
+                    </div>`;
+            }
+            if (isAnnouncement && announcementsCarousel) {
+                announcementsCarousel.innerHTML += `
+                    <div class="text-truncate">
+                        <a class="text-white text-uppercase font-weight-semi-bold" href="${item.link}">${item.title}</a>
+                    </div>`;
+            }
+            if (isFeaturedNews && featuredNewsCarousel) {
+                featuredNewsCarousel.innerHTML += newsHtml;
+            }
+            if (isLatestNews && latestNews) {
+                if (!latestNewsRow || latestNewsRow.children.length >= 2) {
+                    latestNewsRow = document.createElement('div');
+                    latestNewsRow.classList.add('row');
+                    latestNews.appendChild(latestNewsRow);
+                }
+                latestNewsRow.innerHTML += latestNewsHtml;
+            }
+            if (isTrendingNews && trendingNews) {
+                trendingNews.innerHTML += trendingNewsHtml;
+            }
+        } catch (error) {
+            console.error('Error processing news item:', item, error);
         }
-        
     });
 
-    // Initialize Owl Carousel after news items are added
     initializeOwlCarousel();
+}
+
+
+function truncateTitle(title, wordLimit) {
+    const words = title.split(' ');
+    if (words.length > wordLimit) {
+        return words.slice(0, wordLimit).join(' ') + '...';
+    }
+    return title;
+}
+
+function truncateDescription(description, wordLimit) {
+    const words = description.split(' ');
+    if (words.length > wordLimit) {
+        return words.slice(0, wordLimit).join(' ') + '...';
+    }
+    return description;
 }
 
 // Main News carousel
@@ -136,7 +228,6 @@ function initializeOwlCarousel() {
         }
     });
 
-
     // Carousel item 3
     $(".carousel-item-3").owlCarousel({
         autoplay: true,
@@ -165,7 +256,6 @@ function initializeOwlCarousel() {
         }
     });
     
-
     // Carousel item 4
     $(".carousel-item-4").owlCarousel({
         autoplay: true,

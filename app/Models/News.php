@@ -50,5 +50,6 @@ class News extends Model implements HasMedia
     {
         return $this->mainImage ? $this->mainImage->getUrl() : '/path/to/default-image.jpg';
     }
+
     
 }
