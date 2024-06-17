@@ -61,16 +61,16 @@
                     </div>
                     <div class="bg-white border border-top-0 p-3">
                         <div class="d-flex flex-wrap m-n1">
-                            <a href="" class="btn btn-sm btn-outline-secondary m-1">Politics</a>
-                            <a href="" class="btn btn-sm btn-outline-secondary m-1">Business</a>
-                            <a href="" class="btn btn-sm btn-outline-secondary m-1">Corporate</a>
-                            <a href="" class="btn btn-sm btn-outline-secondary m-1">Business</a>
-                            <a href="" class="btn btn-sm btn-outline-secondary m-1">Health</a>
-                            <a href="" class="btn btn-sm btn-outline-secondary m-1">Education</a>
-                            <a href="" class="btn btn-sm btn-outline-secondary m-1">Science</a>
-                            <a href="" class="btn btn-sm btn-outline-secondary m-1">Business</a>
-                            <a href="" class="btn btn-sm btn-outline-secondary m-1">Foods</a>
-                            <a href="" class="btn btn-sm btn-outline-secondary m-1">Travel</a>
+                            <a href="football" class="btn btn-sm btn-outline-secondary m-1">Football</a>
+                            <a href="tennis" class="btn btn-sm btn-outline-secondary m-1">Tennis</a>
+                            <a href="basketball" class="btn btn-sm btn-outline-secondary m-1">Basketball</a>
+                            <a href="volleyball" class="btn btn-sm btn-outline-secondary m-1">Volleyball</a>
+                            <a href="f1" class="btn btn-sm btn-outline-secondary m-1">F1</a>
+                            <a href="handball" class="btn btn-sm btn-outline-secondary m-1">Handball</a>
+                            <a href="rugby" class="btn btn-sm btn-outline-secondary m-1">Rugby</a>
+                            <a href="euro2024" class="btn btn-sm btn-outline-secondary m-1">Euro 2024</a>
+                            <a href="paris2024" class="btn btn-sm btn-outline-secondary m-1">Paris 2024</a>
+                            <a href="" class="btn btn-sm btn-outline-secondary m-1">Copa America 2024</a>
                         </div>
                     </div>
                 </div>
