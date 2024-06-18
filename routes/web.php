@@ -10,6 +10,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\AdminMemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ContactController;
 use App\Http\Middleware\EnsureUserIsSuperAdmin;
 use App\Http\Middleware\Authenticate;
 
@@ -59,3 +60,7 @@ Route::get('/rugby', [HomeController::class, 'rugbyPage'])->name('rugby');
 
 Route::get('public/news/{id}', [HomeController::class, 'showNewsPage'])->name('layouts-web.home');
 Route::get('/api/news/{id}', [NewsController::class, 'getSingleNews']);
+
+
+Route::get('/contact-us', [ContactController::class, 'showContactForm'])->name('contact');
+Route::post('/contact/submit', [ContactController::class, 'submitContactForm'])->name('contact.submit');

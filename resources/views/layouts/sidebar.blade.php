@@ -30,4 +30,10 @@
         Admin Management
     </a>
     </div>
+    <div>
+    <a href="{{ route('admin.members.index') }}" class="sidebar-link">
+        <img src="{{ url('images/email.png') }}" alt="Messages Logo">
+        Messages
+    </a>
+    </div>
 </div>

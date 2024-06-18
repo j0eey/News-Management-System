@@ -23,7 +23,8 @@
         <a href="#" class="btn btn-primary btn-square back-to-top"><i class="fa fa-arrow-up"></i></a>
         <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
         <script src="{{ asset('js/web/bootstrap.bundle.min.js') }}"></script>
-        <script src="{{ asset('js/web/owl.carousel.min.js') }}"></script>         
+        <script src="{{ asset('js/web/owl.carousel.min.js') }}"></script>
+        <script src="{{ asset('js/web/date.js') }}"></script>
         @stack('scripts')
     </body>
 

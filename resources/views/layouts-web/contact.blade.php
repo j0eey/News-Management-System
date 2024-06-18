@@ -1,6 +1,6 @@
 @extends("layouts-web.layout")
 
-@section("title", "")
+@section("title", "Contact Us")
 
 @include("layouts-web.header")
 
@@ -8,10 +8,59 @@
 <div class="container-fluid mt-5 pt-3">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8" id="news-detail-container">
-                    <!-- News Detail Start -->
-                    <!-- The news content will be injected here by JavaScript -->
-                    <!-- News Detail End -->
+            <div class="col-lg-8">
+                <div class="section-title mb-0">
+                    <h4 class="m-0 text-uppercase font-weight-bold">Contact Us For Any Inquiries                    </h4>
+                </div>
+                <div class="bg-white border border-top-0 p-4 mb-3">
+                    <div class="mb-4">
+                        <div class="mb-3">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="fa fa-map-marker-alt text-primary mr-2"></i>
+                                <h6 class="font-weight-bold mb-0">Our Office</h6>
+                            </div>
+                            <p class="m-0">Souk Street 111, Jbeil, Lebanon</p>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="fa fa-envelope-open text-primary mr-2"></i>
+                                <h6 class="font-weight-bold mb-0">Email Us</h6>
+                            </div>
+                            <p class="m-0">info.sportsnews.com@gmail.com</p>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="fa fa-phone-alt text-primary mr-2"></i>
+                                <h6 class="font-weight-bold mb-0">Call Us</h6>
+                            </div>
+                            <p class="m-0">+961 3 359751</p>
+                        </div>
+                    </div>
+                    <h6 class="text-uppercase font-weight-bold mb-3">Contact Us</h6>
+                    <form id="contact-form">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control p-4" placeholder="Your Name" name="name" required="required"/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="email" class="form-control p-4" placeholder="Your Email" name="email" required="required"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control p-4" placeholder="Subject" name="subject" required="required"/>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" rows="4" placeholder="Message" name="message" required="required"></textarea>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary font-weight-semi-bold px-4" style="height: 50px;" type="submit">Send Message</button>
+                        </div>
+                    </form>
+                </div>
             </div>
             
             <div class="col-lg-4">
@@ -36,17 +85,6 @@
                     </div>
                 </div>
                 <!-- Social Follow End -->
-
-                <!-- Trending News Start -->
-                <div class="mb-3">
-                    <div class="section-title mb-0">
-                        <h4 class="m-0 text-uppercase font-weight-bold">Trending News</h4>
-                    </div>
-                    <div class="bg-white border border-top-0 p-3" id="trending-news">
-                        <!-- Trending news items will be dynamically added here -->
-                    </div>
-                </div>
-                <!-- Trending News End -->
 
                 <!-- Tags Start -->
                 <div class="mb-3">
@@ -79,6 +117,5 @@
 @include("layouts-web.footer")
 
 @push('scripts')
-<script src="{{ url('js/web/api-script.js') }}"></script>
-<script src="{{ url('js/web/api-single-news.js') }}"></script>
+<script src="{{ url('js/web/api-contact.js') }}"></script>
 @endpush

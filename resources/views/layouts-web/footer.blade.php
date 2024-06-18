@@ -5,7 +5,7 @@
             <h5 class="mb-4 text-white text-uppercase font-weight-bold">Get In Touch</h5>
             <p class="font-weight-medium"><i class="fa fa-map-marker-alt mr-2"></i>Souk Street 111, Jbeil, Lebanon</p>
             <p class="font-weight-medium"><i class="fa fa-phone-alt mr-2"></i>+961 3 359751</p>
-            <p class="font-weight-medium"><i class="fa fa-envelope mr-2"></i>info@SportsNews.com</p>
+            <p class="font-weight-medium"><i class="fa fa-envelope mr-2"></i>info.sportsnews.com@gmail.com</p>
             
             
         </div>
@@ -22,27 +22,16 @@
         <div class="col-lg-3 col-md-6 mb-5">
             <h5 class="mb-4 text-white text-uppercase font-weight-bold">Categories</h5>
             <div class="m-n1">
-                <a href="" class="btn btn-sm btn-secondary m-1">Politics</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Business</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Corporate</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Business</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Health</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Education</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Science</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Business</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Foods</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Entertainment</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Travel</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Lifestyle</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Politics</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Business</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Corporate</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Business</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Health</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Education</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Science</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Business</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Foods</a>
+                <a href="/football" class="btn btn-sm btn-secondary m-1">Football</a>
+                <a href="/tennis" class="btn btn-sm btn-secondary m-1">Tennis</a>
+                <a href="/basketball" class="btn btn-sm btn-secondary m-1">Basketball</a>
+                <a href="/volleyball" class="btn btn-sm btn-secondary m-1">Volleyball</a>
+                <a href="/f1" class="btn btn-sm btn-secondary m-1">F1</a>
+                <a href="/handball" class="btn btn-sm btn-secondary m-1">Handball</a>
+                <a href="/rugby" class="btn btn-sm btn-secondary m-1">Rugby</a>
+                <a href="/euro2024" class="btn btn-sm btn-secondary m-1">Euro 2024</a>
+                <a href="/euro2024" class="btn btn-sm btn-secondary m-1">Copa America 2024</a>
+                <a href="/paris2024" class="btn btn-sm btn-secondary m-1">Paris 2024</a>
             </div>
         </div>
     </div>

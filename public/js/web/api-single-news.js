@@ -25,13 +25,18 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                     </div>`;
                 container.innerHTML = newsHtml;
+
+                // Change page title to first two words of the news title
+                const newsTitleWords = data.title.split(' ');
+                const pageTitle = newsTitleWords.slice(0, 10).join(' ');
+                document.title = pageTitle;
             })
             .catch(error => console.error('Error fetching news:', error));
     }
 
     // Extract news ID from the URL
     const urlParts = window.location.href.split('/');
-    const newsId = urlParts[urlParts.length - 1]; // Get the last part of the URL
+    const newsId = urlParts[urlParts.length - 1];
 
     // Fetch news details using extracted news ID
     fetchSingleNews(newsId);
