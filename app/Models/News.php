@@ -16,12 +16,10 @@ class News extends Model implements HasMedia
     protected $fillable = [
         'title', 'description', 'custom_date', 'category_id', 'user_id', 'main_image_id'
     ];
-
     
     protected $casts = [
         'custom_date' => 'datetime',
     ];
-    
 
     // Define the relationship with User model
     public function user()
