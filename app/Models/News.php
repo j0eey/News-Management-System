@@ -19,7 +19,7 @@ class News extends Model implements HasMedia
 
     
     protected $casts = [
-        'custom_date' => 'date',
+        'custom_date' => 'datetime',
     ];
     
 

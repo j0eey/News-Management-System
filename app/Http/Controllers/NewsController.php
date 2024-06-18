@@ -89,7 +89,6 @@ class NewsController extends Controller
     public function update(Request $request, News $news)
     {
         try {
-            Log::info('Starting news update process', ['news_id' => $news->id]);
 
             $request->validate([
                 'title' => 'required',
@@ -102,57 +101,45 @@ class NewsController extends Controller
             ]);
 
             $data = $request->except(['images', 'tags']);
-            Log::info('Update data received', ['data' => $data]);
 
             $news->update($data);
-            Log::info('News updated successfully', ['news_id' => $news->id]);
 
             if ($request->has('tags')) {
                 $news->tags()->sync($request->input('tags'));
-                Log::info('Tags synchronized', ['tags' => $request->input('tags')]);
             } else {
                 $news->tags()->detach();
-                Log::info('Tags detached');
             }
 
             // Check if a main image is set
             if ($request->hasFile('main_image')) {
-                Log::info('Main image file detected');
 
                 // Clear existing main image
                 $news->clearMediaCollection('images');
-                Log::info('Existing images cleared');
 
                 // Add new main image
                 $mainImage = $news->addMedia($request->file('main_image'))->toMediaCollection('images');
-                Log::info('New main image added', ['image_id' => $mainImage->id]);
 
                 // Set main_image_id to the ID of the new main image
                 $news->main_image_id = $mainImage->id;
-                Log::info('Main image ID updated', ['main_image_id' => $mainImage->id]);
             }
 
             // Set main_image_id when an existing image is set as main image
             if ($request->has('main_image_id')) {
                 $news->main_image_id = $request->input('main_image_id');
-                Log::info('Main image ID set to existing image', ['main_image_id' => $request->input('main_image_id')]);
             }
 
             // Add additional images
             if ($request->hasFile('images')) {
                 foreach ($request->file('images') as $image) {
                     $media = $news->addMedia($image)->toMediaCollection('images');
-                    Log::info('Additional image added', ['image_id' => $media->id]);
                 }
             }
 
             // Save changes
             $news->save();
-            Log::info('News changes saved', ['news_id' => $news->id]);
 
             return redirect()->route('news.index')->with('success', 'News updated successfully');
         } catch (\Exception $e) {
-            Log::error('Error updating news', ['exception' => $e->getMessage(), 'news_id' => $news->id]);
             return redirect()->back()->with('error', 'Error updating news');
         }
     }
@@ -290,17 +277,17 @@ class NewsController extends Controller
 
         // Get author details
         $authorName = $news->user ? $news->user->name : 'Unknown';
-        $authorImage = $news->user ? $news->user->profile_picture : null; 
+        $authorImage = $news->user ? $news->user->profile_picture : null;
 
         return response()->json([
             'title' => $news->title,
             'description' => $news->description,
             'category' => $news->category ? $news->category->title : 'Uncategorized',
-            'custom_date' => $news->custom_date->format('M d, Y'),
+            'custom_date' => $news->created_at->format('M d, Y H:i'),
             'image_url' => $news->mainImageUrl,
             'tags' => $news->tags->pluck('title')->toArray(),
             'author' => $authorName,
-            'author_image_url' => $authorImage, 
+            'author_image_url' => $authorImage,
         ]);
     }
 
