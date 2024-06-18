@@ -81,8 +81,6 @@
 </div>
 
 @push('scripts')
-<script src="{{ url('js/jquery-3.5.1.min.js') }}"></script>
-<script src="{{ url('js/bootstrap.min.js') }}"></script>
 <script src="{{ url('js/admin_permissions.js') }}"></script>
 <script>
     var savePermissionsRoute = "{{ route('admin.members.savePermissions') }}";

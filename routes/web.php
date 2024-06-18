@@ -11,6 +11,7 @@ use App\Http\Controllers\AdminMemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\MessageController;
 use App\Http\Middleware\EnsureUserIsSuperAdmin;
 use App\Http\Middleware\Authenticate;
 
@@ -64,3 +65,6 @@ Route::get('/api/news/{id}', [NewsController::class, 'getSingleNews']);
 
 Route::get('/contact-us', [ContactController::class, 'showContactForm'])->name('contact');
 Route::post('/contact/submit', [ContactController::class, 'submitContactForm'])->name('contact.submit');
+
+Route::get('/admin/messages', [MessageController::class, 'index'])->name('modules.messages.index');
+Route::get('/admin/messages/{id}', [MessageController::class, 'show'])->name('modules.messages.show');
