@@ -57,3 +57,7 @@ Route::get('/f1', [HomeController::class, 'f1Page'])->name('f1');
 Route::get('/handball', [HomeController::class, 'handballPage'])->name('handball');
 Route::get('/rugby', [HomeController::class, 'rugbyPage'])->name('rugby');
 
+
+
+Route::get('public/news/{id}', [HomeController::class, 'showNewsPage'])->name('layouts-web.home');
+Route::get('/api/news/{id}', [NewsController::class, 'getSingleNews']);

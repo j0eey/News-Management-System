@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\News;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -275,7 +276,7 @@ class NewsController extends Controller
                     'category' => $item->category ? $item->category->title : 'Uncategorized',
                     'custom_date' => $item->custom_date->format('M d, Y'),
                     'image_url' => $item->mainImageUrl,
-                    'link' => route('news.show', $item->id),
+                    'link' => route('layouts-web.home', $item->id),
                     'tags' => $item->tags->pluck('title')->toArray(),
                 ];
             });
@@ -283,9 +284,24 @@ class NewsController extends Controller
         return response()->json($news);
     }
 
-    
+    public function getSingleNews($id)
+    {
+        $news = News::with(['category', 'mainImage', 'tags', 'user'])->findOrFail($id);
 
+        // Get author details
+        $authorName = $news->user ? $news->user->name : 'Unknown';
+        $authorImage = $news->user ? $news->user->profile_picture : null; 
 
-
+        return response()->json([
+            'title' => $news->title,
+            'description' => $news->description,
+            'category' => $news->category ? $news->category->title : 'Uncategorized',
+            'custom_date' => $news->custom_date->format('M d, Y'),
+            'image_url' => $news->mainImageUrl,
+            'tags' => $news->tags->pluck('title')->toArray(),
+            'author' => $authorName,
+            'author_image_url' => $authorImage, 
+        ]);
+    }
 
 }

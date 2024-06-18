@@ -80,5 +80,6 @@
 @include("layouts-web.footer")
 
 @push('scripts')
+<script src="{{ url('js/web/api-script.js') }}"></script>
 <script src="{{ url('js/web/api-single-news.js') }}"></script>
 @endpush

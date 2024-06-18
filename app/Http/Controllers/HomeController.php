@@ -55,4 +55,9 @@ class HomeController extends Controller
     {
         return view('categories.rugby');
     }
+
+    public function showNewsPage($newsId)
+    {
+        return view('single.single', compact('newsId'));
+    }
 }
