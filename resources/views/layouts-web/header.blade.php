@@ -54,18 +54,18 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
                 <div class="navbar-nav mr-auto py-0">
-                    <a href="euro2024" class="nav-item nav-link">Euro 2024</a>
-                    <a href="paris2024" class="nav-item nav-link">Paris 2024</a>
-                    <a href="football" class="nav-item nav-link">Football</a>
-                    <a href="tennis" class="nav-item nav-link">Tennis</a>
-                    <a href="basketball" class="nav-item nav-link">Basketball</a>
+                    <a href="/euro2024" class="nav-item nav-link">Euro 2024</a>
+                    <a href="/paris2024" class="nav-item nav-link">Paris 2024</a>
+                    <a href="/football" class="nav-item nav-link">Football</a>
+                    <a href="/tennis" class="nav-item nav-link">Tennis</a>
+                    <a href="/basketball" class="nav-item nav-link">Basketball</a>
                     <div class="nav-item dropdown">
                         <a href="/" class="nav-link dropdown-toggle" data-toggle="dropdown">More</a>
                         <div class="dropdown-menu rounded-0 m-0">
-                            <a href="volleyball" class="dropdown-item">Volleyball</a>
-                            <a href="f1" class="dropdown-item">F1</a>
-                            <a href="handball" class="dropdown-item">Handball</a>
-                            <a href="rugby" class="dropdown-item">Rugby</a>            
+                            <a href="/volleyball" class="dropdown-item">Volleyball</a>
+                            <a href="/f1" class="dropdown-item">F1</a>
+                            <a href="/handball" class="dropdown-item">Handball</a>
+                            <a href="/rugby" class="dropdown-item">Rugby</a>            
                         </div>
                     </div>
                 </div>
