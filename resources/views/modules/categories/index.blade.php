@@ -15,7 +15,7 @@
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <button class="btn btn-primary" data-toggle="modal" data-target="#categoryModal" id="addCategoryButton" data-permission="create_categories">Add New Category</button>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#categoryModal" id="addCategoryButton" data-permission="create_categories" disabled>Add New Category</button>
     <table class="table mt-3">
         <thead>
             <tr>
@@ -30,11 +30,11 @@
                     <td>{{ $category->title }}</td>
                     <td>{{ $category->description }}</td>
                     <td>
-                        <button class="btn btn-warning editCategoryButton" data-id="{{ $category->id }}" data-title="{{ $category->title }}" data-description="{{ $category->description }}" data-toggle="modal" data-target="#categoryModal" data-permission="edit_categories">Edit</button>
+                        <button class="btn btn-warning editCategoryButton" data-id="{{ $category->id }}" data-title="{{ $category->title }}" data-description="{{ $category->description }}" data-toggle="modal" data-target="#categoryModal" data-permission="edit_categories" disabled>Edit</button>
                         <form action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display:inline;" class="deleteCategoryForm">
                             @csrf
                             @method('DELETE')
-                            <button type="button" class="btn btn-danger deleteCategoryButton" data-permission="delete_categories">Delete</button>
+                            <button type="button" class="btn btn-danger deleteCategoryButton" data-permission="delete_categories" disabled>Delete</button>
                         </form>
                     </td>
                 </tr>

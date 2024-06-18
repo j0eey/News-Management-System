@@ -20,11 +20,11 @@
     <td>{{ $item->category->title }}</td>
     <td>{{ implode(', ', $item->tags->pluck('title')->toArray() ?? []) }}</td>
     <td>
-        <a href="{{ route('news.edit', $item->id) }}" class="btn btn-warning" data-permission="edit_news">Edit</a>
+    <button type="button" class="btn btn-warning" id="editNewsButton" data-permission="edit_news" disabled onclick="window.location.href='{{ route('news.edit', $item->id) }}'">Edit</button>
         <form action="{{ route('news.destroy', $item->id) }}" method="POST" style="display:inline;">
             @csrf
             @method('DELETE')
-            <button type="submit" class="btn btn-danger" data-permission="delete_news">Delete</button>
+            <button type="submit" class="btn btn-danger" data-permission="delete_news" disabled>Delete</button>
         </form>
     </td>
 </tr>

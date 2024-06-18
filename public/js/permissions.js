@@ -10,9 +10,7 @@ $(document).ready(function() {
             $('[data-permission]').each(function() {
                 var permission = $(this).data('permission');
                 if (userPermissions.includes(permission)) {
-                    $(this).removeClass('disabled-link');
-                } else {
-                    $(this).addClass('disabled-link');
+                    $(this).removeAttr('disabled');
                 }
             });
         },

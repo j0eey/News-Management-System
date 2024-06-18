@@ -1,9 +1,8 @@
-@extends("layouts.layout")
-
 @push('styles')
 <link href="{{ url('css/admin/index.css') }}" rel="stylesheet">
 @endpush
 
+@extends("layouts.layout")
 @section("title", "Admin Management")
 
 @include("layouts.header")

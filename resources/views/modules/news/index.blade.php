@@ -10,7 +10,7 @@
 @include("layouts.sidebar")
 
 <div class="container">
-    <a href="{{ route('news.create') }}" class="btn btn-primary mt-3" data-permission="create_news">Add News</a>
+    <button type="button" class="btn btn-primary mt-3" id="addNewsButton" data-permission="create_news" disabled onclick="window.location.href='{{ route('news.create') }}'">Add News</button>
     <div class="row mt-3">
         <div class="col-md-6">
             <input type="text" id="searchInput" class="form-control" placeholder="Search...">

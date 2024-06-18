@@ -66,5 +66,5 @@ Route::get('/api/news/{id}', [NewsController::class, 'getSingleNews']);
 Route::get('/contact-us', [ContactController::class, 'showContactForm'])->name('contact');
 Route::post('/contact/submit', [ContactController::class, 'submitContactForm'])->name('contact.submit');
 
-Route::get('/admin/messages', [MessageController::class, 'index'])->name('modules.messages.index');
-Route::get('/admin/messages/{id}', [MessageController::class, 'show'])->name('modules.messages.show');
+Route::get('/messages', [MessageController::class, 'index'])->name('modules.messages.index');
+Route::get('/messages/{id}', [MessageController::class, 'show'])->name('modules.messages.show');

@@ -7,7 +7,7 @@
 @extends("layouts.sidebar")
 
 <div class="container">
-    <button class="btn btn-primary" data-toggle="modal" data-target="#tagModal" id="addTagButton" data-permission="create_tags">Add New Tag</button>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#tagModal" id="addTagButton" data-permission="create_tags" disabled>Add New Tag</button>
     <table class="table mt-3">
         <thead>
             <tr>
@@ -20,11 +20,11 @@
             <tr>
                 <td>{{ $tag->title }}</td>
                 <td>
-                    <button class="btn btn-warning editTagButton" data-id="{{ $tag->id }}" data-title="{{ $tag->title }}" data-toggle="modal" data-target="#tagModal" data-permission="edit_tags">Edit</button>
+                    <button class="btn btn-warning editTagButton" data-id="{{ $tag->id }}" data-title="{{ $tag->title }}" data-toggle="modal" data-target="#tagModal" data-permission="edit_tags" disabled>Edit</button>
                     <form action="{{ route('tags.destroy', $tag->id) }}" method="POST" style="display:inline;" class="deleteTagForm">
                         @csrf
                         @method('DELETE')
-                        <button type="button" class="btn btn-danger deleteTagButton" data-permission="delete_tags">Delete</button>
+                        <button type="button" class="btn btn-danger deleteTagButton" data-permission="delete_tags" disabled>Delete</button>
                     </form>
                 </td>
             </tr>
@@ -32,7 +32,6 @@
         </tbody>
     </table>
 </div>
-
 
 <div class="modal fade" id="tagModal" tabindex="-1" role="dialog" aria-labelledby="tagModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -57,7 +56,6 @@
     </div>
   </div>
 </div>
-
 
 @push('scripts')
 <script src="{{ url('js/jquery-3.5.1.min.js') }}"></script>
