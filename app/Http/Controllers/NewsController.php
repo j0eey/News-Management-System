@@ -16,7 +16,9 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $news = News::with('tags')->latest()->paginate(15);
+        $news = News::with('tags')
+                    ->orderBy('created_at', 'desc') // Ensure descending order
+                    ->paginate(15);
         return view('modules.news.index', compact('news'));
     }
 
@@ -233,7 +235,6 @@ class NewsController extends Controller
     {
         $query = $request->input('query');
 
-        // Perform the search query
         $news = News::where('title', 'LIKE', "%{$query}%")
                     ->orWhere('description', 'LIKE', "%{$query}%")
                     ->orWhereHas('category', function ($q) use ($query) {
@@ -243,13 +244,14 @@ class NewsController extends Controller
                         $q->where('title', 'LIKE', "%{$query}%");
                     })
                     ->with('category', 'tags', 'media')
-                    ->orderBy('created_at', 'asc') // Ensure ascending order
-                    ->paginate(6); // Assuming 6 items per page
+                    ->orderBy('created_at', 'desc') // Ensure consistent ordering
+                    ->paginate(15);
 
-        // Return the HTML of the news table body and pagination links
+        $paginationHtml = $news->appends(['query' => $query])->links('pagination::bootstrap-4')->toHtml();
+
         return response()->json([
             'html' => view('modules.news.partials.news_table_body', compact('news'))->render(),
-            'pagination' => $news->links()->toHtml(), // Use $news pagination instance
+            'pagination' => $paginationHtml,
         ]);
     }
 

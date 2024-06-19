@@ -40,11 +40,10 @@
         </tbody>
     </table>
     <div id="pagination-links">
-    {{ $news->links('pagination::bootstrap-4') }}
+        {{ $news->links('pagination::bootstrap-4') }}
     </div>
 </div>
 
 @push('scripts')
 <script src="{{ url('js/permissions.js') }}"></script>
-<script src="{{ url('js/news/search.js') }}"></script>
 @endpush
