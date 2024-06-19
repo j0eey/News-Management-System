@@ -13,8 +13,13 @@
     <button type="button" class="btn btn-primary mt-3" id="addNewsButton" data-permission="create_news" disabled onclick="window.location.href='{{ route('news.create') }}'">Add News</button>
     <div class="row mt-3">
         <div class="col-md-6">
-            <form action="{{ route('news.search') }}" method="GET">
-                <input type="text" name="query" id="searchInput" class="form-control" placeholder="Search..." value="{{ request()->input('query') }}">
+            <form id="searchForm" action="{{ route('news.search') }}" method="GET">
+                <div class="input-group">
+                    <input type="text" name="query" id="searchInput" class="form-control" placeholder="Search..." value="{{ request()->input('query') }}">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
@@ -34,7 +39,9 @@
             @include('modules.news.partials.news_table_body', ['news' => $news])
         </tbody>
     </table>
-    {{ $news->appends(request()->except('page'))->links('pagination::bootstrap-4') }}
+    <div id="pagination-links">
+    {{ $news->links('pagination::bootstrap-4') }}
+    </div>
 </div>
 
 @push('scripts')

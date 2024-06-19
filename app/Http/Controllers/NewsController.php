@@ -233,7 +233,7 @@ class NewsController extends Controller
     {
         $query = $request->input('query');
 
-        // Perform the search query with sorting
+        // Perform the search query
         $news = News::where('title', 'LIKE', "%{$query}%")
                     ->orWhere('description', 'LIKE', "%{$query}%")
                     ->orWhereHas('category', function ($q) use ($query) {
@@ -244,13 +244,15 @@ class NewsController extends Controller
                     })
                     ->with('category', 'tags', 'media')
                     ->orderBy('created_at', 'asc') // Ensure ascending order
-                    ->get();
+                    ->paginate(6); // Assuming 6 items per page
 
-        // Render the partial view with the search results
-        $html = view('modules.news.partials.news_table_body', compact('news'))->render();
-
-        return response()->json(['html' => $html]);
+        // Return the HTML of the news table body and pagination links
+        return response()->json([
+            'html' => view('modules.news.partials.news_table_body', compact('news'))->render(),
+            'pagination' => $news->links()->toHtml(), // Use $news pagination instance
+        ]);
     }
+
 
     public function latestNews()
     {

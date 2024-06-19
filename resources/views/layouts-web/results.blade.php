@@ -29,6 +29,7 @@
                         </div>
                     </div>
                     @endforeach
+
                     <div class="col-12">
                         {{ $news->appends(request()->query())->links('pagination::bootstrap-4') }}
                     </div>
