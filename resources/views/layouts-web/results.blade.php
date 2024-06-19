@@ -1,71 +1,36 @@
 @extends("layouts-web.layout")
 
-@section("title", "Sports News")
+@section("title", "Results")
 
 @include("layouts-web.header")
 
-
-<!-- Main News Slider Start -->
-<div class="container-fluid" id="news-container">
-    <div class="row">
-        <div class="col-lg-7 px-0">
-            <div class="owl-carousel main-carousel position-relative" id="main-carousel">
-                <!-- News items will be dynamically added here -->
-            </div>
-        </div>
-        <div class="col-lg-5 px-0">
-            <div class="row mx-0" id="secondary-news">
-                <!-- Secondary news items will be dynamically added here -->
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Main News Slider End -->
-
-<!-- Breaking News Start -->
-<div class="container-fluid bg-dark py-3 mb-3">
-    <div class="container">
-        <div class="row align-items-center bg-dark">
-            <div class="col-12">
-                <div class="d-flex justify-content-between">
-                    <div class="bg-primary text-dark text-center font-weight-medium py-2" style="width: 170px;">Breaking News</div>
-                    <div id="announcements-carousel" class="owl-carousel tranding-carousel position-relative d-inline-flex align-items-center ml-3"
-                            style="width: calc(100% - 170px); padding-right: 90px;">
-                        <!-- Announcements will be dynamically inserted here -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Breaking News End -->
-
-<!-- Featured News Slider Start -->
-<div class="container-fluid pt-5 mb-3">
-    <div class="container">
-        <div class="section-title">
-            <h4 class="m-0 text-uppercase font-weight-bold">Featured News</h4>
-        </div>
-        <div class="owl-carousel news-carousel carousel-item-4 position-relative" id="featured-news-carousel">
-            <!-- Featured news will be dynamically added here -->
-        </div>
-    </div>
-</div>
-<!-- Featured News Slider End -->
-
-<!-- News With Sidebar Start -->
-<div class="container-fluid">
+<div class="container-fluid mt-5 pt-3">
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
                 <div class="row">
                     <div class="col-12">
                         <div class="section-title">
-                            <h4 class="m-0 text-uppercase font-weight-bold">Latest News</h4>
+                            <h4 class="m-0 text-uppercase font-weight-bold">Search Results</h4>
                         </div>
                     </div>
-                    <!-- Latest News will be dynamically added here -->
-                    <div class="col-12" id="latest-news">
+                    @foreach ($news as $article)
+                    <div class="col-lg-6">
+                        <div class="position-relative mb-3">
+                            <img class="img-fluid w-100" src="{{ $article['image_url'] ?? 'img/default.jpg' }}" style="object-fit: cover;">
+                            <div class="bg-white border border-top-0 p-4">
+                                <div class="mb-2">
+                                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2">{{ $article['category'] }}</a>
+                                    <a class="text-body"><small>{{ $article['custom_date'] }}</small></a>
+                                </div>
+                                <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="{{ $article['link'] }}">{{ $article['title'] }}</a>
+                                <p class="m-0">{{ $article['description'] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                    <div class="col-12">
+                        {{ $news->appends(request()->query())->links('pagination::bootstrap-4') }}
                     </div>
                 </div>
             </div>
@@ -93,17 +58,6 @@
                 </div>
                 <!-- Social Follow End -->
 
-                <!-- Trending News Start -->
-                <div class="mb-3">
-                    <div class="section-title mb-0">
-                        <h4 class="m-0 text-uppercase font-weight-bold">Trending News</h4>
-                    </div>
-                    <div class="bg-white border border-top-0 p-3" id="trending-news">
-                        <!-- Trending news items will be dynamically added here -->
-                    </div>
-                </div>
-                <!-- Trending News End -->
-
                 <!-- Tags Start -->
                 <div class="mb-3">
                     <div class="section-title mb-0">
@@ -129,11 +83,7 @@
         </div>
     </div>
 </div>
-<!-- News With Sidebar End -->
 
 @include("layouts-web.footer")
 
-@push('scripts')
-<script src="{{ url('js/web/api-script.js') }}"></script>
-@endpush  
 

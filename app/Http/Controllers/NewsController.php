@@ -9,6 +9,7 @@ use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class NewsController extends Controller
@@ -289,6 +290,42 @@ class NewsController extends Controller
             'author' => $authorName,
             'author_image_url' => $authorImage,
         ]);
+    }
+
+    public function searchResults(Request $request)
+    {
+        $query = $request->input('query');
+
+        // Perform the search query
+        $news = News::with(['category', 'mainImage', 'tags', 'user'])
+                    ->where(function ($q) use ($query) {
+                        $q->where('title', 'LIKE', "%{$query}%")
+                        ->orWhere('description', 'LIKE', "%{$query}%")
+                        ->orWhereHas('category', function ($q) use ($query) {
+                            $q->where('title', 'LIKE', "%{$query}%");
+                        })
+                        ->orWhereHas('tags', function ($q) use ($query) {
+                            $q->where('title', 'LIKE', "%{$query}%");
+                        });
+                    })
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(6);
+
+
+        $news->getCollection()->transform(function ($item) {
+            return [
+                'title' => $item->title,
+                'description' => Str::words(strip_tags($item->description), 20, '...'),
+                'category' => $item->category ? $item->category->title : 'Uncategorized',
+                'custom_date' => $item->custom_date->format('M d, Y'),
+                'image_url' => $item->mainImageUrl,
+                'link' => route('layouts-web.home', $item->id),
+                'tags' => $item->tags->pluck('title')->toArray(),
+            ];
+        });
+
+
+        return view('layouts-web.results', compact('news'));
     }
 
 }

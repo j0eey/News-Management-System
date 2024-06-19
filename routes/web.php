@@ -68,3 +68,7 @@ Route::post('/contact/submit', [ContactController::class, 'submitContactForm'])-
 
 Route::get('/messages', [MessageController::class, 'index'])->name('modules.messages.index');
 Route::get('/messages/{id}', [MessageController::class, 'show'])->name('modules.messages.show');
+
+Route::get('/results', [NewsController::class, 'searchResults'])->name('search.results');
+
+

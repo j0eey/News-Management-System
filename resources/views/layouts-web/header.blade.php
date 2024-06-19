@@ -65,20 +65,25 @@
                             <a href="/volleyball" class="dropdown-item">Volleyball</a>
                             <a href="/f1" class="dropdown-item">F1</a>
                             <a href="/handball" class="dropdown-item">Handball</a>
-                            <a href="/rugby" class="dropdown-item">Rugby</a>            
+                            <a href="/rugby" class="dropdown-item">Rugby</a>
                         </div>
                     </div>
                 </div>
-                <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
-                    <input type="text" class="form-control border-0" placeholder="Search...">
-                    <div class="input-group-append">
-                        <button class="input-group-text bg-primary text-dark border-0 px-3"><i
-                                class="fa fa-search"></i></button>
+                <form action="{{ route('search.results') }}" method="GET" class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px; margin-top: 10px;">
+                    <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
+                        <input id="search-input" type="text" name="query" class="form-control border-0" placeholder="Search...">
+                        <div class="input-group-append">
+                            <button type="submit" id="search-btn" class="input-group-text bg-primary text-dark border-0 px-3">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </nav>
     </div>
     <!-- Navbar End -->
 </header>
+
+
 
