@@ -60,7 +60,7 @@
                     <a href="/tennis" class="nav-item nav-link">Tennis</a>
                     <a href="/basketball" class="nav-item nav-link">Basketball</a>
                     <div class="nav-item dropdown">
-                        <a href="/" class="nav-link dropdown-toggle" data-toggle="dropdown">More</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">More</a>
                         <div class="dropdown-menu rounded-0 m-0">
                             <a href="/volleyball" class="dropdown-item">Volleyball</a>
                             <a href="/f1" class="dropdown-item">F1</a>
@@ -69,8 +69,9 @@
                         </div>
                     </div>
                 </div>
+                <!-- Main search form for larger screens -->
                 <form action="{{ route('search.results') }}" method="GET" class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px; margin-top: 10px;">
-                    <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
+                    <div class="input-group ml-auto" style="width: 100%; max-width: 300px;">
                         <input id="search-input" type="text" name="query" class="form-control border-0" placeholder="Search...">
                         <div class="input-group-append">
                             <button type="submit" id="search-btn" class="input-group-text bg-primary text-dark border-0 px-3">
@@ -79,6 +80,19 @@
                         </div>
                     </div>
                 </form>
+                <!-- End of main search form -->
+                <!-- Mobile view search form -->
+                <form action="{{ route('search.results') }}" method="GET" class="input-group ml-auto d-lg-none" style="width: 100%; max-width: 400px;">
+                    <div class="input-group" style="max-width: 100%;">
+                        <input id="search-input-mobile" type="text" name="query" class="form-control border-0" placeholder="Search...">
+                        <div class="input-group-append">
+                            <button type="submit" id="search-btn-mobile" class="input-group-text bg-primary text-dark border-0 px-3">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <!-- End of mobile view search form -->
             </div>
         </nav>
     </div>
