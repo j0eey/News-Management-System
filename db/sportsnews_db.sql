@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2024 at 02:46 PM
+-- Generation Time: Jun 20, 2024 at 02:59 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -140,11 +140,7 @@ CREATE TABLE `media` (
 
 INSERT INTO `media` (`id`, `name`, `file_name`, `mime_type`, `size`, `disk`, `conversions_disk`, `collection_name`, `manipulations`, `custom_properties`, `generated_conversions`, `responsive_images`, `order_column`, `model_type`, `model_id`, `uuid`, `created_at`, `updated_at`) VALUES
 (26, 'i', 'i.jpg', 'image/jpeg', 36322, 'public', 'public', 'images', '[]', '[]', '[]', '[]', 1, 'App\\Models\\News', 2, '604fc9d7-1c2c-4915-8ebd-ccb3feee2a9b', '2024-05-27 22:09:05', '2024-05-27 22:09:05'),
-(27, 'xavi', 'xavi.jpg', 'image/jpeg', 41378, 'public', 'public', 'images', '[]', '[]', '[]', '[]', 2, 'App\\Models\\News', 2, 'ec9c6dcc-b765-4263-816c-5933f79a5dd9', '2024-05-28 05:37:32', '2024-05-28 05:37:32'),
-(82, '6655ba39591ec', '6655ba39591ec.jpeg', 'image/jpeg', 43246, 'public', 'public', 'images', '[]', '[]', '[]', '[]', 3, 'App\\Models\\News', 2, '0a16b511-2d4b-44ca-9015-0b9cce43f313', '2024-05-28 18:14:49', '2024-05-28 18:14:49'),
 (84, '6655ba3af0a9c', '6655ba3af0a9c.jpeg', 'image/jpeg', 67141, 'public', 'public', 'images', '[]', '[]', '[]', '[]', 1, 'App\\Models\\News', 16, 'e6697278-33d1-4033-8c68-89b6f9aad1e0', '2024-05-28 18:41:40', '2024-05-28 18:41:40'),
-(183, 'xavi', 'xavi.jpg', 'image/jpeg', 41378, 'public', 'public', 'images', '[]', '[]', '[]', '[]', 1, 'App\\Models\\News', 39, 'b3d1c83f-4faf-4720-8334-6ebd7295c108', '2024-06-14 16:54:22', '2024-06-14 16:54:22'),
-(184, 'sRZyjc1BVnVFnTkeU33TG9C6Djd', 'sRZyjc1BVnVFnTkeU33TG9C6Djd.jpg', 'image/jpeg', 200724, 'public', 'public', 'images', '[]', '[]', '[]', '[]', 2, 'App\\Models\\News', 39, '5672f0c9-0b94-4b57-ae00-ad3082bf0f8e', '2024-06-14 16:54:22', '2024-06-14 16:54:22'),
 (185, 'andy-robertson-lfc-scaled-e1697801575777', 'andy-robertson-lfc-scaled-e1697801575777.jpeg', 'image/jpeg', 125942, 'public', 'public', 'images', '[]', '[]', '[]', '[]', 1, 'App\\Models\\News', 40, '903fd4c5-d56e-4ccc-9f15-2fa7359172cf', '2024-06-14 16:58:33', '2024-06-14 16:58:33'),
 (186, 'fbl-euro-2024-fra-training', 'fbl-euro-2024-fra-training.webp', 'image/webp', 137540, 'public', 'public', 'images', '[]', '[]', '[]', '[]', 1, 'App\\Models\\News', 41, '62288702-2a1b-4de2-941b-6b749c2c5a7b', '2024-06-14 16:59:56', '2024-06-14 16:59:56'),
 (187, 'skysports-barcelona-xavi_6564722', 'skysports-barcelona-xavi_6564722.jpg', 'image/jpeg', 253101, 'public', 'public', 'images', '[]', '[]', '[]', '[]', 3, 'App\\Models\\News', 39, 'adfea0a7-08bc-48dc-aa24-52f575ee4487', '2024-06-14 23:28:20', '2024-06-14 23:28:20'),
@@ -520,7 +516,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `is_super_admin`, `role_id`, `last_login_date`, `profile_picture`) VALUES
-(1, 'Joey', 'john.doe@example.com', '$2y$12$2YjuDyI2HRQK738.ARTkW.TLNluLkVQmnHDt2Iu621ORlA9UmnfF.', NULL, '2024-05-23 14:14:12', '2024-06-19 12:11:58', 1, 6, '2024-06-19 12:11:58', 'profile_pictures/d58Du3Nxh6aimPNolTlhBvuh2kgyVLvvjtiuHowD.jpg'),
+(1, 'Joey', 'john.doe@example.com', '$2y$12$2YjuDyI2HRQK738.ARTkW.TLNluLkVQmnHDt2Iu621ORlA9UmnfF.', NULL, '2024-05-23 14:14:12', '2024-06-20 12:53:24', 1, 6, '2024-06-20 12:53:24', 'profile_pictures/d58Du3Nxh6aimPNolTlhBvuh2kgyVLvvjtiuHowD.jpg'),
 (2, 'joey', 'joey@example.com', '$2y$12$jCK2dowg7ly9qYCTO7ejIOyZwi/AhtM8yaAxAZB5X/jIfqkXNx/NK', NULL, '2024-06-01 08:42:39', '2024-06-10 23:09:54', 0, 7, '2024-06-10 23:09:54', NULL),
 (23, 'jimmy', 'jimmy@example.com', '$2y$12$xlUJBqJqD6YhGSxPUXVwU.p1inJF3GFvnFM9PtfTkBYe55LOdSft2', NULL, '2024-06-10 23:44:25', '2024-06-19 12:11:17', 0, 8, '2024-06-19 12:11:17', NULL);
 
