@@ -12,7 +12,7 @@
 
 <div class="container">
     <h1>{{ $news->title }}</h1>
-    <p>Posted by {{ $news->user->name ?? 'Admin' }} on {{ $news->custom_date }}</p>
+    <p>Posted by {{ $news->user->name ?? 'Admin' }} on {{ $news->custom_date->format('Y-m-d') }}</p>
 
     @if($news->main_image_id)
     <div class="row">
