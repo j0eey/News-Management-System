@@ -6,7 +6,7 @@
     <div class="header-content">
         <h1 class="title">@yield('title')</h1>
         <div class="profile-picture" onclick="toggleDropdown()">
-            <img src="{{ Auth::user()->profile_picture ? url('storage/' . Auth::user()->profile_picture) : asset('images/profile.png') }}" alt="Admin Profile Picture">
+            <img src="{{ Auth::user()->profile_picture ? url('storage/app/public/' . Auth::user()->profile_picture) : asset('images/profile.png') }}" alt="Admin Profile Picture">
             <div class="dropdown-menu" id="profileDropdown">
                 <a href="{{ route('profile.show') }}" class="dropdown-item">Profile</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

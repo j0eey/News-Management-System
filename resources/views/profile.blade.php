@@ -20,7 +20,7 @@
         <div class="form-group">
             <label for="profile_picture" class="ppicture">Profile Picture</label>
             <div>
-                <img src="{{ $user->profile_picture ? asset('storage/' . $user->profile_picture) : 'https://via.placeholder.com/150' }}" alt="Profile Picture" class="img-thumbnail" width="150">
+                <img src="{{ $user->profile_picture ? asset('storage/app/public/' . $user->profile_picture) : 'https://via.placeholder.com/150' }}" alt="Profile Picture" class="img-thumbnail" width="150">
             </div>
             <input type="file" class="form-control-file mt-2" id="profile_picture" name="profile_picture">
         </div>
